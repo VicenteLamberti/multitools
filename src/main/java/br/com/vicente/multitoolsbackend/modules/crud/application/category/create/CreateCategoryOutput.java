@@ -1,4 +1,4 @@
-package br.com.vicente.multitoolsbackend.modules.crud.application.category;
+package br.com.vicente.multitoolsbackend.modules.crud.application.category.create;
 
 import br.com.vicente.multitoolsbackend.modules.crud.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.crud.domain.category.CategoryID;
