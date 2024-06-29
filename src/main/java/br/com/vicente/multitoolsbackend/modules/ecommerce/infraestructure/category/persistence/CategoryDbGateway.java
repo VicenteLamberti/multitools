@@ -14,7 +14,7 @@ public class CategoryDbGateway implements CategoryGateway {
 
     @Override
     public void create(final Category category) {
-        categoryRepository.save(category)
-
+        final CategoryJpa categoryJpa = CategoryJpa.from(category);
+        categoryRepository.save(categoryJpa);
     }
 }

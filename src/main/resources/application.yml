@@ -1,0 +1,7 @@
+spring:
+  application:
+  name: MultiToolsBackend
+  datasource:
+    url: jdbc:postgresql://localhost/multitools
+    username: multitools
+    password: 123456
