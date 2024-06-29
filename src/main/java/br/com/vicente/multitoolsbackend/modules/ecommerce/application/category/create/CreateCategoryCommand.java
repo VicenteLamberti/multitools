@@ -1,4 +1,4 @@
-package br.com.vicente.multitoolsbackend.modules.crud.application.category.create;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.create;
 
 public record CreateCategoryCommand(
         String name

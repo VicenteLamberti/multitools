@@ -1,4 +1,4 @@
-package br.com.vicente.multitoolsbackend.modules.crud.domain.category;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category;
 
 import br.com.vicente.multitoolsbackend.shared.domain.Identifier;
 import br.com.vicente.multitoolsbackend.shared.domain.utils.IdUtils;

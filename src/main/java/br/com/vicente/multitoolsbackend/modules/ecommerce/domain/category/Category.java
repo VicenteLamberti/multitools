@@ -1,6 +1,6 @@
-package br.com.vicente.multitoolsbackend.modules.crud.domain.category;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category;
 
-import br.com.vicente.multitoolsbackend.modules.crud.domain.movie.Movie;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.Product;
 import br.com.vicente.multitoolsbackend.shared.domain.Entity;
 import br.com.vicente.multitoolsbackend.shared.domain.ErrorMessages;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.DomainException;
@@ -10,12 +10,12 @@ import java.util.List;
 
 public class Category extends Entity<CategoryID> {
     private String name;
-    private List<Movie> movies;
+    private List<Product> products;
 
     protected Category(final CategoryBuilder builder) {
         super(builder.getId());
         this.name = builder.getName();
-        this.movies = builder.getMovies();
+        this.products = builder.getProducts();
 
         selfValidate();
     }
@@ -43,7 +43,7 @@ public class Category extends Entity<CategoryID> {
         return name;
     }
 
-    public List<Movie> getMovies() {
-        return Collections.unmodifiableList(movies);
+    public List<Product> getProducts() {
+        return Collections.unmodifiableList(products);
     }
 }

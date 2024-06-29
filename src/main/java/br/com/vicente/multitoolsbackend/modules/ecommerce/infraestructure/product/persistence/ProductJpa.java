@@ -1,7 +1,6 @@
-package br.com.vicente.multitoolsbackend.modules.crud.infraestructure.movie.persistence;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.product.persistence;
 
-import br.com.vicente.multitoolsbackend.modules.crud.domain.category.Category;
-import br.com.vicente.multitoolsbackend.modules.crud.infraestructure.category.persistence.CategoryJpa;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.persistence.CategoryJpa;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,13 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 
-import java.util.List;
-
-@Entity(name = "Movie")
-@Table(name = "MOVIE")
-public class MovieJpa {
+@Entity(name = "Product")
+@Table(name = "PRODUCT")
+public class ProductJpa {
 
     @Column(name = "ID", nullable = false)
     @Id

@@ -1,4 +1,4 @@
-package br.com.vicente.multitoolsbackend.modules.crud.domain.category;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category;
 
 import br.com.vicente.multitoolsbackend.shared.domain.ErrorMessages;
 import br.com.vicente.multitoolsbackend.shared.domain.ValidatorCustom;
@@ -17,7 +17,6 @@ public class CategoryValidator extends ValidatorCustom<Category> {
     @Override
     public List<String> validate() {
         validateName();
-        validateMovies();
         return errors;
     }
 

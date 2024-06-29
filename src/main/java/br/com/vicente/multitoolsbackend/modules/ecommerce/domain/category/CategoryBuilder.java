@@ -1,6 +1,6 @@
-package br.com.vicente.multitoolsbackend.modules.crud.domain.category;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category;
 
-import br.com.vicente.multitoolsbackend.modules.crud.domain.movie.Movie;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +8,11 @@ import java.util.List;
 public class CategoryBuilder {
     private CategoryID id;
     private String name;
-    private List<Movie> movies;
+    private List<Product> products;
 
     public static CategoryBuilder builder(){
         final CategoryBuilder builder = new CategoryBuilder();
-        builder.movies = new ArrayList<>();
+        builder.products = new ArrayList<>();
         return builder;
     }
 
@@ -37,12 +37,12 @@ public class CategoryBuilder {
         return this;
     }
 
-    public List<Movie> getMovies() {
-        return movies;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public CategoryBuilder withMovies(final List<Movie> movies) {
-        this.movies = movies;
+    public CategoryBuilder withProducts(final List<Product> products) {
+        this.products = products;
         return this;
     }
 }

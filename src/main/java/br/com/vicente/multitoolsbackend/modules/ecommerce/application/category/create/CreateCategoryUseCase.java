@@ -1,7 +1,7 @@
-package br.com.vicente.multitoolsbackend.modules.crud.application.category.create;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.create;
 
-import br.com.vicente.multitoolsbackend.modules.crud.domain.category.Category;
-import br.com.vicente.multitoolsbackend.modules.crud.domain.category.CategoryGateway;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
 
 public class CreateCategoryUseCase {
 
@@ -14,8 +14,7 @@ public class CreateCategoryUseCase {
     public CreateCategoryOutput execute(CreateCategoryCommand cmd){
         final String name = cmd.name();
         final Category category = Category.create(name);
-        categoryGateway.create();
+        categoryGateway.create(category);
         return CreateCategoryOutput.from(category);
-
     }
 }

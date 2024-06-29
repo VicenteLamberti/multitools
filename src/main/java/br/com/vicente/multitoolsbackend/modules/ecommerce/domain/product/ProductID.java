@@ -1,24 +1,24 @@
-package br.com.vicente.multitoolsbackend.modules.crud.domain.movie;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product;
 
 import br.com.vicente.multitoolsbackend.shared.domain.Identifier;
 import br.com.vicente.multitoolsbackend.shared.domain.utils.IdUtils;
 
 import java.util.Objects;
 
-public class MovieID extends Identifier {
+public class ProductID extends Identifier {
     private final String value;
 
-    private MovieID(final String value) {
+    private ProductID(final String value) {
         Objects.requireNonNull(value);
         this.value = value;
     }
 
-    public static MovieID generate() {
-        return MovieID.from(IdUtils.uuid());
+    public static ProductID generate() {
+        return ProductID.from(IdUtils.uuid());
     }
 
-    public static MovieID from(final String id) {
-        return id == null ? null : new MovieID(id);
+    public static ProductID from(final String id) {
+        return id == null ? null : new ProductID(id);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class MovieID extends Identifier {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MovieID that = (MovieID) o;
+        ProductID that = (ProductID) o;
         return getValue().equals(that.getValue());
     }
 

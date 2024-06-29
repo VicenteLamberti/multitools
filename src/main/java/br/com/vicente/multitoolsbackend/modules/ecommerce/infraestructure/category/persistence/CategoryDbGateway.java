@@ -1,9 +1,8 @@
-package br.com.vicente.multitoolsbackend.modules.crud.infraestructure.category.persistence;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.persistence;
 
-import br.com.vicente.multitoolsbackend.modules.crud.domain.category.Category;
-import br.com.vicente.multitoolsbackend.modules.crud.domain.category.CategoryGateway;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class CategoryDbGateway implements CategoryGateway {

@@ -1,14 +1,14 @@
-package br.com.vicente.multitoolsbackend.modules.crud.domain.movie;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product;
 
 import br.com.vicente.multitoolsbackend.shared.domain.Entity;
-import br.com.vicente.multitoolsbackend.modules.crud.domain.category.Category;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 
-public class Movie extends Entity<MovieID> {
+public class Product extends Entity<ProductID> {
 
     private String name;
     private Category category;
 
-    public Movie(final MovieBuilder builder) {
+    public Product(final ProductBuilder builder) {
         super(builder.getId());
         this.name = builder.getName();
         this.category = builder.getCategory();
@@ -19,7 +19,7 @@ public class Movie extends Entity<MovieID> {
 
     }
 
-    public MovieID getId() {
+    public ProductID getId() {
         return id;
     }
 
