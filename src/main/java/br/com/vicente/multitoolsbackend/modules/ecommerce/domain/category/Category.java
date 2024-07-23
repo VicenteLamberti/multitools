@@ -28,7 +28,7 @@ public class Category extends Entity<CategoryID> {
                 .build();
     }
     public void delete(){
-        this.
+        //todo
     }
 
     @Override

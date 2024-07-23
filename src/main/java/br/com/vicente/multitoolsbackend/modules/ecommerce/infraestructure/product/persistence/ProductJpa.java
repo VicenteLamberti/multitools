@@ -22,7 +22,7 @@ public class ProductJpa {
     private String name;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CATEGORY_ID", nullable = false)
-    private CategoryJpa categoryJpa;
+    private CategoryJpa category;
 
     protected ProductJpa() {
 
@@ -31,11 +31,11 @@ public class ProductJpa {
     public ProductJpa(
             final String id,
             final String name,
-            final CategoryJpa categoryJpa
+            final CategoryJpa category
     ) {
         this.id = id;
         this.name = name;
-        this.categoryJpa = categoryJpa;
+        this.category = category;
     }
 
     public static ProductJpa from(final Product product){
@@ -54,7 +54,7 @@ public class ProductJpa {
         return name;
     }
 
-    public CategoryJpa getCategoryJpa() {
-        return categoryJpa;
+    public CategoryJpa getCategory() {
+        return category;
     }
 }

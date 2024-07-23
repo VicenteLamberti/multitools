@@ -28,7 +28,9 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation('org.apache.commons:commons-lang3:3.12.0')
 
-	implementation group: 'org.flywaydb', name: 'flyway-core', version: '10.0.0'
+	runtimeOnly group: 'org.flywaydb', name: 'flyway-database-postgresql', version: '10.16.0'
+
+	implementation ('org.flywaydb:flyway-core')
 }
 
 tasks.named('test') {

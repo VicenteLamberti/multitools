@@ -2,6 +2,7 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.categ
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryID;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,5 +17,10 @@ public class CategoryDbGateway implements CategoryGateway {
     public void create(final Category category) {
         final CategoryJpa categoryJpa = CategoryJpa.from(category);
         categoryRepository.save(categoryJpa);
+    }
+
+    @Override
+    public Category getByID(CategoryID id) {
+        return null;
     }
 }

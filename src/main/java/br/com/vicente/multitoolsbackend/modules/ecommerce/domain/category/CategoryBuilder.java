@@ -49,7 +49,7 @@ public class CategoryBuilder {
     }
 
     public boolean getDeleted() {
-        return id;
+        return deleted;
     }
 
     public CategoryBuilder withDeleted(final boolean deleted) {

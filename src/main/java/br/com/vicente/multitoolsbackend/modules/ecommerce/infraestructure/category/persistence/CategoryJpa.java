@@ -19,7 +19,6 @@ public class CategoryJpa {
     @Id
     private String id;
     @Column(name = "NAME", nullable = false, length = 255)
-    @Id
     private String name;
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<ProductJpa> products;
