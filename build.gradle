@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.1'
 	id 'io.spring.dependency-management' version '1.1.5'
-	id("org.flywaydb.flyway") version "9.22.3" // Para liberar as tasks do flyway
+	id("org.flywaydb.flyway") version "10.0.0" // Para liberar as tasks do flyway
 }
 
 group = 'br.com.vicente'
@@ -28,7 +28,7 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation('org.apache.commons:commons-lang3:3.12.0')
 
-	implementation ('org.flywaydb:flyway-core')
+	implementation group: 'org.flywaydb', name: 'flyway-core', version: '10.0.0'
 }
 
 tasks.named('test') {
