@@ -5,6 +5,7 @@ import br.com.vicente.multitoolsbackend.shared.domain.Entity;
 import br.com.vicente.multitoolsbackend.shared.domain.ErrorMessages;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.DomainException;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,16 +15,16 @@ public class Category extends Entity<CategoryID> {
     private boolean deleted;
 
     protected Category(final CategoryBuilder builder) {
-        super(builder.getId());
+        super(CategoryID.generate());
         this.name = builder.getName();
-        this.products = builder.getProducts();
+        this.products = new ArrayList<>();
+        this.deleted = false;
 
         selfValidate();
     }
 
-    public static Category create(final String name) {
+    public static Category newCategory(final String name) {
         return CategoryBuilder.builder()
-                .withId(CategoryID.generate())
                 .withName(name)
                 .build();
     }
@@ -49,5 +50,9 @@ public class Category extends Entity<CategoryID> {
 
     public List<Product> getProducts() {
         return Collections.unmodifiableList(products);
+    }
+
+    public boolean isDeleted() {
+        return deleted;
     }
 }

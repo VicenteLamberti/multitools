@@ -6,19 +6,19 @@ import br.com.vicente.multitoolsbackend.shared.UseCase;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CreateCategoryUseCase implements UseCase<CreateCategoryCommand, CreateCategoryOutput> {
+public class RegisterCategoryUseCase implements UseCase<RegisterCategoryCommand, RegisterCategoryOutput> {
 
     private final CategoryGateway categoryGateway;
 
-    public CreateCategoryUseCase(final CategoryGateway categoryGateway) {
+    public RegisterCategoryUseCase(final CategoryGateway categoryGateway) {
         this.categoryGateway = categoryGateway;
     }
 
     @Override
-    public CreateCategoryOutput execute(final CreateCategoryCommand cmd) {
+    public RegisterCategoryOutput execute(final RegisterCategoryCommand cmd) {
         final String name = cmd.name();
-        final Category category = Category.create(name);
+        final Category category = Category.newCategory(name);
         categoryGateway.create(category);
-        return CreateCategoryOutput.from(category);
+        return RegisterCategoryOutput.from(category);
     }
 }

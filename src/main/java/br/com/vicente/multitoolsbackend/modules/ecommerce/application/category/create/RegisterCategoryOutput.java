@@ -3,15 +3,13 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryID;
 
-import java.util.List;
-
-public record CreateCategoryOutput(
+public record RegisterCategoryOutput(
         CategoryID id,
         String name
 ) {
 
-    public static CreateCategoryOutput from(final Category category){
-        return new CreateCategoryOutput(
+    public static RegisterCategoryOutput from(final Category category){
+        return new RegisterCategoryOutput(
                 category.getId(),
                 category.getName()
         );

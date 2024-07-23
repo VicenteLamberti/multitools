@@ -1,6 +1,6 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models;
 
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.create.CreateCategoryOutput;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.create.RegisterCategoryOutput;
 import br.com.vicente.multitoolsbackend.shared.Strings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,7 +10,7 @@ public record CreateCategoryResponse(
         @JsonProperty(Strings.NAME)
         String name
 ) {
-    public static CreateCategoryResponse from(final CreateCategoryOutput output) {
+    public static CreateCategoryResponse from(final RegisterCategoryOutput output) {
         return new CreateCategoryResponse(
                 output.id().getValue(),
                 output.name()

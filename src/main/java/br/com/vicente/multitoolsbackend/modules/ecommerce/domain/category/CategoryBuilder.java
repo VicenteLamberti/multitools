@@ -2,7 +2,6 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category;
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryBuilder {
@@ -12,15 +11,13 @@ public class CategoryBuilder {
     private boolean deleted;
 
     public static CategoryBuilder builder(){
-        final CategoryBuilder builder = new CategoryBuilder();
-        builder.products = new ArrayList<>();
-        builder.deleted = false;
-        return builder;
+        return new CategoryBuilder();
     }
 
     public Category build(){
         return new Category(this);
     }
+
     public CategoryID getId() {
         return id;
     }
