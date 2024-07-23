@@ -11,6 +11,7 @@ import java.util.List;
 public class Category extends Entity<CategoryID> {
     private String name;
     private List<Product> products;
+    private boolean deleted;
 
     protected Category(final CategoryBuilder builder) {
         super(builder.getId());
@@ -25,6 +26,9 @@ public class Category extends Entity<CategoryID> {
                 .withId(CategoryID.generate())
                 .withName(name)
                 .build();
+    }
+    public void delete(){
+        this.
     }
 
     @Override

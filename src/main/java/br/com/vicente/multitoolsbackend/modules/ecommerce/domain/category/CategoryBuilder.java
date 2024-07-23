@@ -9,10 +9,12 @@ public class CategoryBuilder {
     private CategoryID id;
     private String name;
     private List<Product> products;
+    private boolean deleted;
 
     public static CategoryBuilder builder(){
         final CategoryBuilder builder = new CategoryBuilder();
         builder.products = new ArrayList<>();
+        builder.deleted = false;
         return builder;
     }
 
@@ -45,4 +47,16 @@ public class CategoryBuilder {
         this.products = products;
         return this;
     }
+
+    public boolean getDeleted() {
+        return id;
+    }
+
+    public CategoryBuilder withDeleted(final boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+
+    
 }
