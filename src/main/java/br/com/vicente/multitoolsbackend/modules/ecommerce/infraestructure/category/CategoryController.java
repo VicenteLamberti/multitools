@@ -6,9 +6,11 @@ import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.c
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.CreateCategoryRequest;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.CreateCategoryResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
 
+@RestController
 public class CategoryController implements CategoryAPI {
     private final CreateCategoryUseCase createCategoryUseCase;
 

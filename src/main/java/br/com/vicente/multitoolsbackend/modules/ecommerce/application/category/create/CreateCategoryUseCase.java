@@ -3,7 +3,9 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
 import br.com.vicente.multitoolsbackend.shared.UseCase;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CreateCategoryUseCase implements UseCase<CreateCategoryCommand, CreateCategoryOutput> {
 
     private final CategoryGateway categoryGateway;
