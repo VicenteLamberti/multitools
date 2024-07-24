@@ -1,9 +1,6 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category;
 
-import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.Product;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class CategoryDummyBuilder {
    private final CategoryBuilder categoryBuilder;
@@ -22,8 +19,11 @@ public class CategoryDummyBuilder {
         return this.categoryBuilder;
     }
 
-    public Category build(){
-        return new Category(this.categoryBuilder);
+    public Category dummy(){
+        return new Category(
+                this.categoryBuilder,
+                this.categoryBuilder.getId()
+        );
     }
 
 

@@ -17,7 +17,7 @@ public class RegisterCategoryUseCase implements UseCase<RegisterCategoryCommand,
     @Override
     public RegisterCategoryOutput execute(final RegisterCategoryCommand cmd) {
         final String name = cmd.name();
-        final Category category = Category.newCategory(name);
+        final Category category = Category.register(name);
         categoryGateway.create(category);
         return RegisterCategoryOutput.from(category);
     }

@@ -21,8 +21,12 @@ public class CategoryValidator extends ValidatorCustom<Category> {
     }
 
     private void validateName(){
-        if(StringUtils.isEmpty(this.object.getName())) errors.add(ErrorMessages.NAME_SHOULD_NOT_BE_EMPTY);
-        if(StringUtils.isBlank(this.object.getName())) errors.add(ErrorMessages.NAME_SHOULD_NOT_BE_BLANK);
-        if(this.object.getName().length() > 255) errors.add(ErrorMessages.NAME_SHOULD_NOT_BE_MORE_THAN_255_CHARACTER);
+        final String name = this.object.getName();
+        if(StringUtils.isEmpty(name)) errors.add(ErrorMessages.NAME_SHOULD_NOT_BE_EMPTY);
+        if(StringUtils.isBlank(name)) errors.add(ErrorMessages.NAME_SHOULD_NOT_BE_BLANK);
+        if(StringUtils.isNotEmpty(name)){
+            if(name.length() > 255) errors.add(ErrorMessages.NAME_SHOULD_NOT_BE_MORE_THAN_255_CHARACTER);
+        }
+
     }
 }

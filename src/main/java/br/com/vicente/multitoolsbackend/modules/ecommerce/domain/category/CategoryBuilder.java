@@ -14,10 +14,10 @@ public class CategoryBuilder {
         return new CategoryBuilder();
     }
 
-    public Category build(){
+    protected Category build(){
         return new Category(this);
     }
-    public Category generateFrom(){
+    public Category rebuild(){
         return new Category(this, id);
     }
 

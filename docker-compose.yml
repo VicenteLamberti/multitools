@@ -6,15 +6,15 @@ services:
     container_name: multitools_postgres
     image: postgres:latest
     environment:
-      - POSTGRES_DATABASE=multitools
-      - POSTGRES_USER=vicente
+      - POSTGRES_DATABASE=multitools_test
+      - POSTGRES_USER=multitools
       - POSTGRES_PASSWORD=123456
     security_opt:
       - seccomp:unconfined
     ports:
       - "5432:5432"
     volumes:
-      - ../.docker/pgdata:/var/lib/postgresql/data
+      - ../.docker/multitools/pgdata:/var/lib/postgresql/data
     networks:
       - multitools_services
 

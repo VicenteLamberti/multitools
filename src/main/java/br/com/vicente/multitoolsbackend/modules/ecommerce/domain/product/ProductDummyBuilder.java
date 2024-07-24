@@ -1,6 +1,5 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product;
 
-import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryBuilder;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryDummyBuilder;
 
@@ -18,7 +17,8 @@ public class ProductDummyBuilder {
        this.productBuilder
                 .withId(ProductID.generate())
                 .withName("Product Name")
-                .withCategory(categoryDummyBuilder.builder().build());
+                .withCategory(categoryDummyBuilder.builder().rebuild());
+
         return this.productBuilder;
 
    }

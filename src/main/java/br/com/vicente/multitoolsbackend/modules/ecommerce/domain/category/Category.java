@@ -23,7 +23,7 @@ public class Category extends Entity<CategoryID> {
         selfValidate();
     }
 
-    public Category(
+    protected Category(
             final CategoryBuilder builder,
             final CategoryID id
     ) {
@@ -36,7 +36,7 @@ public class Category extends Entity<CategoryID> {
     }
 
 
-    public static Category newCategory(final String name) {
+    public static Category register(final String name) {
         return CategoryBuilder.builder()
                 .withName(name)
                 .build();
