@@ -23,11 +23,27 @@ public class Category extends Entity<CategoryID> {
         selfValidate();
     }
 
+    public Category(
+            final CategoryBuilder builder,
+            final CategoryID id
+    ) {
+        super(id);
+        this.name = builder.getName();
+        this.products = builder.getProducts();
+        this.deleted = builder.getDeleted();
+
+        selfValidate();
+    }
+
+
     public static Category newCategory(final String name) {
         return CategoryBuilder.builder()
                 .withName(name)
                 .build();
     }
+
+
+
     public void delete(){
         //todo
     }

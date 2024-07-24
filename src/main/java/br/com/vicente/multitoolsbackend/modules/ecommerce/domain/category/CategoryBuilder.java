@@ -17,6 +17,9 @@ public class CategoryBuilder {
     public Category build(){
         return new Category(this);
     }
+    public Category generateFrom(){
+        return new Category(this, id);
+    }
 
     public CategoryID getId() {
         return id;
