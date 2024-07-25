@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-class RebuildTest {
+class RebuildCategoryTest {
 
     @ParameterizedTest
     @MethodSource

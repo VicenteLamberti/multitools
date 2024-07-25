@@ -1,8 +1,8 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category;
 
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.create.RegisterCategoryCommand;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.create.RegisterCategoryOutput;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.create.RegisterCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryCommand;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryOutput;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.CreateCategoryRequest;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.CreateCategoryResponse;
 import org.springframework.http.ResponseEntity;

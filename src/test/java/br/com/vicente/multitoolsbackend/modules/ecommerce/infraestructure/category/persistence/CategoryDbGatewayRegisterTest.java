@@ -19,7 +19,7 @@ import org.springframework.context.annotation.FilterType;
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*DbGateway")
         }
 )
-class RegisterTest {
+class CategoryDbGatewayRegisterTest {
 
     @Autowired
     private CategoryDbGateway categoryDbGateway;
