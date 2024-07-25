@@ -2,7 +2,10 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
+import br.com.vicente.multitoolsbackend.shared.Strings;
 import br.com.vicente.multitoolsbackend.shared.UseCase;
+import br.com.vicente.multitoolsbackend.shared.domain.exception.Notification;
+import br.com.vicente.multitoolsbackend.shared.domain.exception.UseCaseException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,8 +20,20 @@ public class RegisterCategoryUseCase implements UseCase<RegisterCategoryCommand,
     @Override
     public RegisterCategoryOutput execute(final RegisterCategoryCommand cmd) {
         final String name = cmd.name();
-        final Category category = Category.register(name);
-        categoryGateway.create(category);
+        final Notification notification = Notification.create();
+        final Category category = notification.validate(() -> Category.register(name));
+        validateErrors(notification);
+        notification.validate(()->{
+            categoryGateway.register(category);
+            return null;
+        });
+        validateErrors(notification);
         return RegisterCategoryOutput.from(category);
+    }
+
+    private static void validateErrors(final Notification notification) {
+        if(notification.hasError()){
+            throw new UseCaseException(Strings.UNABLE_REGISTER_CATEGORY, notification.getErrors());
+        }
     }
 }

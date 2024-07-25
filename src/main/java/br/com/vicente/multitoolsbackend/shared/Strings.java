@@ -7,5 +7,6 @@ public class Strings {
     public static final String NAME = "name";
 
     //U
+    public static final String UNABLE_REGISTER_CATEGORY = "Unable to register category";
     public static final String URL_CATERGORIES = "/categories";
 }

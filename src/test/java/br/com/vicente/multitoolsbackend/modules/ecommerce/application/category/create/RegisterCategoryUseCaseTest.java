@@ -2,6 +2,7 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
+import br.com.vicente.multitoolsbackend.shared.domain.exception.UseCaseException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ class RegisterCategoryUseCaseTest {
     @DisplayName("Deve retornar o output do objeto Category persistido")
     void givenValidCommand_whenCallsExecute_shouldReturnOutputOfCategoryThatWasPassedToGateway(){
         //Given
-        final String expectedName = "";
+        final String expectedName = "Category Name";
         final RegisterCategoryCommand cmd = RegisterCategoryCommand.with(expectedName);
 
         //When
@@ -34,7 +35,7 @@ class RegisterCategoryUseCaseTest {
 
         //Then
         final ArgumentCaptor<Category> captor = ArgumentCaptor.forClass(Category.class);
-        Mockito.verify(categoryGateway, Mockito.times(1)).create(captor.capture());
+        Mockito.verify(categoryGateway, Mockito.times(1)).register(captor.capture());
         final Category categoryWasPassedToGateway = captor.getValue();
 
         Assertions.assertNotNull(actualOutput);
@@ -46,26 +47,35 @@ class RegisterCategoryUseCaseTest {
     }
 
     @Test
-    @DisplayName("Caso o seja enviado um parâmetro inválido, deve ocorrer uma exceção no use case.")
-    void givenInvalidCommand_whenCallsExecute_shouldThrowsException(){
+    @DisplayName("Caso ocorra uma exceção no método de Register de dominio, deve ser capturado, e lançado no use case com os erros que ocorreram no dominio")
+    void givenOccurExceptionInDomainMethod_whenCallsExecute_shouldThrowsExceptionInUseCase(){
         //Given
-        final String expectedName = "";
-        final RegisterCategoryCommand cmd = RegisterCategoryCommand.with(expectedName);
+        final String name = "";
+        final RegisterCategoryCommand cmd = RegisterCategoryCommand.with(name);
 
         //When
-        final RegisterCategoryOutput actualOutput = useCase.execute(cmd);
+        final UseCaseException actualException = assertThrows(UseCaseException.class, () -> useCase.execute(cmd));
 
         //Then
-        final ArgumentCaptor<Category> captor = ArgumentCaptor.forClass(Category.class);
-        Mockito.verify(categoryGateway, Mockito.times(1)).create(captor.capture());
-        final Category categoryWasPassedToGateway = captor.getValue();
+        Assertions.assertNotNull(actualException);
+        Assertions.assertFalse(actualException.getErrors().isEmpty());
+    }
 
-        Assertions.assertNotNull(actualOutput);
-        Assertions.assertNotNull(actualOutput.id());
-        Assertions.assertEquals(expectedName, actualOutput.name());
+    @Test
+    @DisplayName("Caso ocorra uma exceção no método de Register do gateway, deve ser capturado, e lançado no use case com os erros que ocorreram no gateway")
+    void givenOccurExceptionInMethodRegisterOfGateway_whenCallsExecute_shouldThrowsExceptionInUseCase(){
+        //Given
+        final String name = "Category Name";
+        final RegisterCategoryCommand cmd = RegisterCategoryCommand.with(name);
 
-        Assertions.assertEquals(actualOutput.id(), categoryWasPassedToGateway.getId());
-        Assertions.assertEquals(actualOutput.name(), categoryWasPassedToGateway.getName());
+        Mockito.doThrow(new RuntimeException("Error in gateway")).when(categoryGateway).register(Mockito.any());
+
+        //When
+        final UseCaseException actualException = assertThrows(UseCaseException.class, () -> useCase.execute(cmd));
+
+        //Then
+        Assertions.assertNotNull(actualException);
+        Assertions.assertFalse(actualException.getErrors().isEmpty());
     }
 
 }
