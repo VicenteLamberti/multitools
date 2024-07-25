@@ -28,7 +28,7 @@ class CategoryDbGatewayRegisterTest {
 
 
     @Test
-    @DisplayName("Deve trasnformar o objeto Category em CategoryJpa e persistir")
+    @DisplayName("Deve transformar o objeto Category em CategoryJpa e persistir")
     void givenValidCategory_whenCallsRegister_shouldPersistIt() {
         //Given
         final Category category = CategoryBuilder.builderDummy().rebuild();
@@ -45,4 +45,5 @@ class CategoryDbGatewayRegisterTest {
 
     }
 
+    vou iniciar teste de api
 }
