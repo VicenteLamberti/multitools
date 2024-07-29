@@ -8,5 +8,5 @@ public class Strings {
 
     //U
     public static final String UNABLE_REGISTER_CATEGORY = "Unable to register category";
-    public static final String URL_CATERGORIES = "/categories";
+    public static final String URL_CATEGORIES = "/categories";
 }

@@ -45,5 +45,4 @@ class CategoryDbGatewayRegisterTest {
 
     }
 
-    vou iniciar teste de api
 }

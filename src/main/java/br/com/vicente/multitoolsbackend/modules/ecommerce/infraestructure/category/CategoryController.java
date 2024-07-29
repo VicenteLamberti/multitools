@@ -3,8 +3,8 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.categ
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryCommand;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryOutput;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryUseCase;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.CreateCategoryRequest;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.CreateCategoryResponse;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.RegisterCategoryRequest;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.RegisterCategoryResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +19,9 @@ public class CategoryController implements CategoryAPI {
     }
 
     @Override
-    public ResponseEntity<CreateCategoryResponse> create(final CreateCategoryRequest request) {
+    public ResponseEntity<RegisterCategoryResponse> create(final RegisterCategoryRequest request) {
         final RegisterCategoryCommand cmd = RegisterCategoryCommand.with(request.name());
         final RegisterCategoryOutput output = registerCategoryUseCase.execute(cmd);
-        return ResponseEntity.ok(CreateCategoryResponse.from(output));
+        return ResponseEntity.ok(RegisterCategoryResponse.from(output));
     }
 }
