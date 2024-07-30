@@ -8,7 +8,6 @@ import br.com.vicente.multitoolsbackend.shared.domain.exception.Notification;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.UseCaseException;
 import org.springframework.stereotype.Component;
 
-@Component
 public class RegisterCategoryUseCase implements UseCase<RegisterCategoryCommand, RegisterCategoryOutput> {
 
     private final CategoryGateway categoryGateway;
@@ -19,6 +18,8 @@ public class RegisterCategoryUseCase implements UseCase<RegisterCategoryCommand,
 
     @Override
     public RegisterCategoryOutput execute(final RegisterCategoryCommand cmd) {
+        System.out.println(cmd.name());
+        System.out.println("");
         final String name = cmd.name();
         final Notification notification = Notification.create();
         final Category category = notification.validate(() -> Category.register(name));

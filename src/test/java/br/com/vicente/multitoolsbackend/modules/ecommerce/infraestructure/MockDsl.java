@@ -14,9 +14,6 @@ public interface MockDsl {
 
     MockMvc mvc();
 
-
-
-
     default ResultActions postRequest(final String url,
                                       final Object body
     ) throws Exception {

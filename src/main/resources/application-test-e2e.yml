@@ -1,0 +1,23 @@
+postgres:
+  username: multitools
+  password: 123456
+  schema: multitools
+  url: localhost:${postgres.port}
+  showsql: false
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:${postgres.port}/${postgres.schema}
+    username: ${postgres.username}
+    password: ${postgres.password}
+    driverClassName: org.postgresql.Driver
+#    hikari:
+#      auto-commit: true
+#      connection-timeout: 60000
+#      max-lifetime: 600000
+#      maximum-pool-size: 2
+#      minimum-idle: 10
+#      pool-name: master
+#  jpa:
+#    properties:
+#      "[hibernate.connection.provider_disables_autocommit]": false

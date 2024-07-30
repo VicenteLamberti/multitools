@@ -1,6 +1,8 @@
 package br.com.vicente.multitoolsbackend.shared;
 
 public class Strings {
+    //BAR
+    public static final String BAR = "/";
     //I
     public static final String ID = "id";
     //N
