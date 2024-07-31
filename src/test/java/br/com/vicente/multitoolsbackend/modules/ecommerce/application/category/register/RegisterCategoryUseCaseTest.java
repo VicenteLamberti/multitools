@@ -2,6 +2,7 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
+import br.com.vicente.multitoolsbackend.shared.domain.ErrorMessages;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.UseCaseException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -12,6 +13,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -65,17 +68,21 @@ class RegisterCategoryUseCaseTest {
     @DisplayName("Caso ocorra uma exceção no método de Register do gateway, deve ser capturado, e lançado no use case com os erros que ocorreram no gateway")
     void givenOccurExceptionInMethodRegisterOfGateway_whenCallsExecute_shouldThrowsExceptionInUseCase(){
         //Given
+        final String expectedExceptionMessage = "Unable to register category";
+        final List<String> expectedErrors = List.of("Error in gateway");
         final String name = "Category Name";
         final RegisterCategoryCommand cmd = RegisterCategoryCommand.with(name);
 
-        Mockito.doThrow(new RuntimeException("Error in gateway")).when(categoryGateway).register(Mockito.any());
+        Mockito.doThrow(new RuntimeException(expectedErrors.getFirst())).when(categoryGateway).register(Mockito.any());
 
         //When
         final UseCaseException actualException = assertThrows(UseCaseException.class, () -> useCase.execute(cmd));
 
         //Then
         Assertions.assertNotNull(actualException);
+        Assertions.assertEquals(expectedExceptionMessage, actualException.getMessage());
         Assertions.assertFalse(actualException.getErrors().isEmpty());
+        Assertions.assertTrue(actualException.getErrors().containsAll(expectedErrors));
     }
 
 }

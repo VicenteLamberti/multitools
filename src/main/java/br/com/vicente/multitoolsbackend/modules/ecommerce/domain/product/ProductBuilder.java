@@ -1,6 +1,7 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product;
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryBuilder;
 
 public class ProductBuilder {
     private ProductID id;
@@ -11,8 +12,26 @@ public class ProductBuilder {
         return new ProductBuilder();
     }
 
+    /**
+     * Deve ser utilizado somente nos testes
+     * @return ProductBuilder
+     */
+    public static ProductBuilder builderDummy(){
+        final ProductBuilder productBuilder = new ProductBuilder();
+        productBuilder
+                .withId(ProductID.generate())
+                .withName("Product Name")
+                .withCategory(CategoryBuilder.builderDummy().rebuild());
+
+        return productBuilder;
+    }
+
+
     public Product build() {
         return new Product(this);
+    }
+    public Product rebuild(){
+        return new Product(this, id);
     }
 
     public ProductID getId() {

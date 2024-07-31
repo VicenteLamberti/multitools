@@ -1,7 +1,7 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category;
 
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.Product;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.ProductBuilder;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.ProductDummyBuilder;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.DomainException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -21,13 +21,14 @@ class BuildCategoryTest {
         //Given
         final String expectedName = "John";
         final CategoryID wrongID = CategoryID.from("1");
-
+        final Product product = ProductBuilder.builderDummy().rebuild();
         //When
+
         final Category actualCategory = CategoryBuilder.builder()
                 .withName(expectedName)
                 .withDeleted(true)
                 .withId(wrongID)
-                .withProducts(List.of(new ProductDummyBuilder(ProductBuilder.builder()).builder().build()))
+                .withProducts(List.of(product))
                 .build();
 
         //Then

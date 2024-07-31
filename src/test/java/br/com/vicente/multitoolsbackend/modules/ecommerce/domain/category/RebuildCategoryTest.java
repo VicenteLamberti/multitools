@@ -2,7 +2,6 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category;
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.Product;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.ProductBuilder;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.ProductDummyBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,8 +46,8 @@ class RebuildCategoryTest {
     private static Stream<Arguments> givenValidParams_whenCallsRebuild_shouldRebuildObjectOfCategory() {
         // Given
         return Stream.of(
-                Arguments.of(true, List.of(new ProductDummyBuilder(ProductBuilder.builder()).builder().build()), false),
-                Arguments.of(false, List.of(new ProductDummyBuilder(ProductBuilder.builder()).builder().build()), false),
+                Arguments.of(true, List.of(ProductBuilder.builderDummy().rebuild()), false),
+                Arguments.of(false, List.of(ProductBuilder.builderDummy().rebuild()), false),
                 Arguments.of(true, List.of(), true)
 
         );

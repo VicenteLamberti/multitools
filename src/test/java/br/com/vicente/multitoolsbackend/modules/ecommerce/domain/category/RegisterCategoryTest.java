@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class CategoryRegisterTest {
+class RegisterCategoryTest {
 
     @Test
     @DisplayName("Deve construir um novo objeto Category, valores que devem ser default, não devem ser alterados mesmo se for passado parâmetros")

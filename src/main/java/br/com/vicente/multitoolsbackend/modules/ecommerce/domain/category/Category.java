@@ -42,17 +42,33 @@ public class Category extends Entity<CategoryID> {
                 .build();
     }
 
-
-
-    public void delete(){
-        //todo
+    public void delete() {
+        if (!this.products.isEmpty()) {
+            List<String> errors = new ArrayList<>();
+            errors.add(ErrorMessages.PRODUCTS_LINKED);
+            throw new DomainException(ErrorMessages.ERROR_AT_DELETE_CATEGORY, errors);
+        }
     }
+
+    //todo mudar para inativo
+//    public void inativar() {
+//        if (!this.products.isEmpty()) {
+//            List<String> errors = new ArrayList<>();
+//            errors.add(ErrorMessages.PRODUCTS_LINKED);
+//            throw new DomainException(ErrorMessages.AN_ERROR_OCCURRED_AT_DELETE_CATEGORY, errors);
+//        }
+//        if(this.deleted){
+//            List<String> errors = new ArrayList<>();
+//            errors.add(ErrorMessages.ALREADY_DELETED);
+//            throw new DomainException(ErrorMessages.AN_ERROR_OCCURRED_AT_DELETE_CATEGORY, errors);
+//        }
+//    }
 
     @Override
     public void selfValidate() {
         final List<String> errors = new CategoryValidator(this).validate();
         if (!errors.isEmpty()) {
-            throw new DomainException(ErrorMessages.AN_ERROR_OCCURRED_AT_INSTANTIATE_CATEGORY, errors);
+            throw new DomainException(ErrorMessages.ERROR_AT_INSTANTIATE_CATEGORY, errors);
         }
     }
 

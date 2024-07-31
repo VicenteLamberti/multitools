@@ -18,8 +18,6 @@ public class RegisterCategoryUseCase implements UseCase<RegisterCategoryCommand,
 
     @Override
     public RegisterCategoryOutput execute(final RegisterCategoryCommand cmd) {
-        System.out.println(cmd.name());
-        System.out.println("");
         final String name = cmd.name();
         final Notification notification = Notification.create();
         final Category category = notification.validate(() -> Category.register(name));
@@ -34,6 +32,7 @@ public class RegisterCategoryUseCase implements UseCase<RegisterCategoryCommand,
 
     private static void validateErrors(final Notification notification) {
         if(notification.hasError()){
+            //TODO colocar tudo no mesmo arquivo pq tenho que traduzir tudo
             throw new UseCaseException(Strings.UNABLE_REGISTER_CATEGORY, notification.getErrors());
         }
     }
