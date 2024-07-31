@@ -5,8 +5,7 @@ import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Catego
 import br.com.vicente.multitoolsbackend.shared.Strings;
 import br.com.vicente.multitoolsbackend.shared.UseCase;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.Notification;
-import br.com.vicente.multitoolsbackend.shared.domain.exception.UseCaseException;
-import org.springframework.stereotype.Component;
+import br.com.vicente.multitoolsbackend.shared.domain.exception.ValidateNotification;
 
 public class RegisterCategoryUseCase implements UseCase<RegisterCategoryCommand, RegisterCategoryOutput> {
 
@@ -21,19 +20,12 @@ public class RegisterCategoryUseCase implements UseCase<RegisterCategoryCommand,
         final String name = cmd.name();
         final Notification notification = Notification.create();
         final Category category = notification.validate(() -> Category.register(name));
-        validateErrors(notification);
+        ValidateNotification.useCaseCheckHasErrors(notification, Strings.UNABLE_REGISTER_CATEGORY);
         notification.validate(()->{
             categoryGateway.register(category);
             return null;
         });
-        validateErrors(notification);
+        ValidateNotification.useCaseCheckHasErrors(notification, Strings.UNABLE_REGISTER_CATEGORY);
         return RegisterCategoryOutput.from(category);
-    }
-
-    private static void validateErrors(final Notification notification) {
-        if(notification.hasError()){
-            //TODO colocar tudo no mesmo arquivo pq tenho que traduzir tudo
-            throw new UseCaseException(Strings.UNABLE_REGISTER_CATEGORY, notification.getErrors());
-        }
     }
 }

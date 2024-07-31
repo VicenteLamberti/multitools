@@ -9,6 +9,7 @@ public class Strings {
     public static final String NAME = "name";
 
     //U
+    public static final String UNABLE_DELETE_CATEGORY = "Unable to delete category";
     public static final String UNABLE_REGISTER_CATEGORY = "Unable to register category";
     public static final String URL_CATEGORIES = "/categories";
 }

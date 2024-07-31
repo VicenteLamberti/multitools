@@ -23,4 +23,9 @@ public class CategoryDbGateway implements CategoryGateway {
     public Category getByID(CategoryID id) {
         return null;
     }
+
+    @Override
+    public void delete() {
+
+    }
 }
