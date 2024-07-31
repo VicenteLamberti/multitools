@@ -4,7 +4,6 @@ import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Catego
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryID;
 import br.com.vicente.multitoolsbackend.shared.Strings;
-import br.com.vicente.multitoolsbackend.shared.domain.ErrorMessages;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.Notification;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.ValidateNotification;
 

@@ -1,8 +1,8 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category;
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.Product;
+import br.com.vicente.multitoolsbackend.shared.Strings;
 import br.com.vicente.multitoolsbackend.shared.domain.Entity;
-import br.com.vicente.multitoolsbackend.shared.domain.ErrorMessages;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.DomainException;
 
 import java.util.ArrayList;
@@ -45,8 +45,8 @@ public class Category extends Entity<CategoryID> {
     public void delete() {
         if (!this.products.isEmpty()) {
             List<String> errors = new ArrayList<>();
-            errors.add(ErrorMessages.PRODUCTS_LINKED);
-            throw new DomainException(ErrorMessages.ERROR_AT_DELETE_CATEGORY, errors);
+            errors.add(Strings.PRODUCTS_LINKED);
+            throw new DomainException(Strings.ERROR_AT_DELETE_CATEGORY, errors);
         }
     }
 
@@ -68,7 +68,7 @@ public class Category extends Entity<CategoryID> {
     public void selfValidate() {
         final List<String> errors = new CategoryValidator(this).validate();
         if (!errors.isEmpty()) {
-            throw new DomainException(ErrorMessages.ERROR_AT_INSTANTIATE_CATEGORY, errors);
+            throw new DomainException(Strings.ERROR_AT_INSTANTIATE_CATEGORY, errors);
         }
     }
 

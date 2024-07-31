@@ -1,6 +1,6 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category;
 
-import br.com.vicente.multitoolsbackend.shared.domain.ErrorMessages;
+import br.com.vicente.multitoolsbackend.shared.Strings;
 import br.com.vicente.multitoolsbackend.shared.domain.ValidatorCustom;
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,10 +22,10 @@ public class CategoryValidator extends ValidatorCustom<Category> {
 
     private void validateName(){
         final String name = this.object.getName();
-        if(StringUtils.isEmpty(name)) errors.add(ErrorMessages.NAME_SHOULD_NOT_BE_EMPTY);
-        if(StringUtils.isBlank(name)) errors.add(ErrorMessages.NAME_SHOULD_NOT_BE_BLANK);
+        if(StringUtils.isEmpty(name)) errors.add(Strings.NAME_SHOULD_NOT_BE_EMPTY);
+        if(StringUtils.isBlank(name)) errors.add(Strings.NAME_SHOULD_NOT_BE_BLANK);
         if(StringUtils.isNotEmpty(name)){
-            if(name.length() > 255) errors.add(ErrorMessages.NAME_SHOULD_NOT_BE_MORE_THAN_255_CHARACTER);
+            if(name.length() > 255) errors.add(Strings.NAME_SHOULD_NOT_BE_GREATER_THAN_255_CHARACTER);
         }
 
     }
