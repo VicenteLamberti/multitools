@@ -4,5 +4,5 @@ public interface CategoryGateway {
     void register(final Category category);
     Category getByID(final CategoryID id);
 
-    void delete();
+    void delete(final Category category);
 }

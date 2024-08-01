@@ -27,7 +27,7 @@ public class DeleteCategoryUseCase {
         });
         ValidateNotification.useCaseCheckHasErrors(notification,Strings.UNABLE_DELETE_CATEGORY);
         notification.validate(()->{
-            categoryGateway.delete();
+            categoryGateway.delete(category);
             return null;
         });
         ValidateNotification.useCaseCheckHasErrors(notification,Strings.UNABLE_DELETE_CATEGORY);

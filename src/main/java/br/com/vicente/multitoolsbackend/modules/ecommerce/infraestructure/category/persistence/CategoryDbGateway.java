@@ -25,7 +25,7 @@ public class CategoryDbGateway implements CategoryGateway {
     }
 
     @Override
-    public void delete() {
+    public void delete(final Category category) {
 
     }
 }
