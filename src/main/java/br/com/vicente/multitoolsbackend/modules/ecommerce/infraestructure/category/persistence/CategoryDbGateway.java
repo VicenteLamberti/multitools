@@ -3,7 +3,11 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.categ
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryID;
+import br.com.vicente.multitoolsbackend.shared.infraestructure.exception.NotFoundException;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Optional;
 
 @Component
 public class CategoryDbGateway implements CategoryGateway {
@@ -20,12 +24,18 @@ public class CategoryDbGateway implements CategoryGateway {
     }
 
     @Override
-    public Category getByID(CategoryID id) {
-        return null;
+    public Category getByID(final CategoryID id) {
+        return categoryRepository
+                .findById(id.getValue())
+                .map(CategoryJpa::toAggregate)
+                //TODO mudar mensagem
+                .orElseThrow(()->new NotFoundException("Erro no gateway", List.of("Categoria não encontrada " + id.getValue())));
     }
 
     @Override
     public void delete(final Category category) {
+        final CategoryJpa categoryJpa = CategoryJpa.from(category);
+        categoryRepository.delete(categoryJpa);
 
     }
 }

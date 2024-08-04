@@ -1,6 +1,8 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.product.persistence;
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.Product;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.ProductBuilder;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.ProductID;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.persistence.CategoryJpa;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,6 +46,14 @@ public class ProductJpa {
                 product.getName(),
                 CategoryJpa.from(product.getCategory())
         );
+    }
+
+    public Product toAggregate(){
+        return ProductBuilder.builder()
+                .withId(ProductID.from(getId()))
+                .withName(getName())
+                .withCategory(getCategory().toAggregate())
+                .rebuild();
     }
 
     public String getId() {

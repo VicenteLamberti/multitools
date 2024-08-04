@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: root
+    password: 123456
+    url: jdbc:h2:mem:pdv360_test;MODE=Postgresql;DATABASE_TO_LOWER=TRUE
+    hikari:
+      auto-commit: true
+  h2:
+    console:
+      enabled: true
+      path: /h2

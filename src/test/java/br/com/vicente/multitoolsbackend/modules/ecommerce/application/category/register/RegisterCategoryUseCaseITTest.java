@@ -1,29 +1,32 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register;
 
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.IntegrationTest;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.persistence.CategoryJpa;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.persistence.CategoryRepository;
 import br.com.vicente.multitoolsbackend.shared.usecase.exception.UseCaseException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@ExtendWith(MockitoExtension.class)
-class RegisterCategoryUseCaseTest {
-    @Mock
+@IntegrationTest
+class RegisterCategoryUseCaseITTest {
+    @SpyBean
     private CategoryGateway categoryGateway;
 
-    @InjectMocks
+    @Autowired
     private RegisterCategoryUseCase useCase;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Test
     @DisplayName("Deve retornar o output do objeto Category persistido")
@@ -46,6 +49,18 @@ class RegisterCategoryUseCaseTest {
 
         Assertions.assertEquals(actualOutput.id(), categoryWasPassedToGateway.getId());
         Assertions.assertEquals(actualOutput.name(), categoryWasPassedToGateway.getName());
+
+        final CategoryJpa categoryJpa = categoryRepository.findAll().getFirst();
+
+        Assertions.assertNotNull(categoryJpa);
+        Assertions.assertEquals(actualOutput.id().getValue(), categoryJpa.getId());
+        Assertions.assertEquals(expectedName, categoryJpa.getName());
+
+        //TODO colocar specification
+//        Assertions.assertTrue(categoryJpa.getProducts().isEmpty());
+
+
+
     }
 
     @Test
@@ -60,9 +75,9 @@ class RegisterCategoryUseCaseTest {
 
         //Then
         Mockito.verify(categoryGateway,Mockito.never()).register(Mockito.any());
-
         Assertions.assertNotNull(actualException);
         Assertions.assertFalse(actualException.getErrors().isEmpty());
+        Assertions.assertEquals(0, categoryRepository.count());
     }
 
     @Test
@@ -84,6 +99,7 @@ class RegisterCategoryUseCaseTest {
         Assertions.assertEquals(expectedExceptionMessage, actualException.getMessage());
         Assertions.assertFalse(actualException.getErrors().isEmpty());
         Assertions.assertTrue(actualException.getErrors().containsAll(expectedErrors));
+        Assertions.assertEquals(0, categoryRepository.count());
     }
 
 }
