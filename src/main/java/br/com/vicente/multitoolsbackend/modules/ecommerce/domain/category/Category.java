@@ -5,6 +5,8 @@ import br.com.vicente.multitoolsbackend.shared.Strings;
 import br.com.vicente.multitoolsbackend.shared.domain.Entity;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.DomainException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,12 +15,16 @@ public class Category extends Entity<CategoryID> {
     private String name;
     private List<Product> products;
     private boolean deleted;
+    private LocalDateTime deletedAt;
+    private LocalDateTime updatedAt;
 
     protected Category(final CategoryBuilder builder) {
         super(CategoryID.generate());
         this.name = builder.getName();
         this.products = new ArrayList<>();
         this.deleted = false;
+        this.deletedAt = null;
+        this.updatedAt = null;
 
         selfValidate();
     }
@@ -31,6 +37,8 @@ public class Category extends Entity<CategoryID> {
         this.name = builder.getName();
         this.products = builder.getProducts();
         this.deleted = builder.getDeleted();
+        this.deletedAt = builder.getDeletedAt();
+        this.updatedAt = builder.getUpdatedAt();
 
         selfValidate();
     }
@@ -48,10 +56,14 @@ public class Category extends Entity<CategoryID> {
             errors.add(Strings.PRODUCTS_LINKED);
             throw new DomainException(Strings.ERROR_AT_DELETE_CATEGORY, errors);
         }
+        this.deleted = true;
+        this.deletedAt = LocalDateTime.now();
+        selfValidate();
     }
 
     public void update(final String name) {
         this.name = name;
+        this.updatedAt = LocalDateTime.now();
         selfValidate();
     }
 
@@ -93,5 +105,11 @@ public class Category extends Entity<CategoryID> {
         return deleted;
     }
 
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
 
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
 }

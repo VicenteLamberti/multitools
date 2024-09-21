@@ -2,6 +2,7 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category;
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.Product;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,8 @@ public class CategoryBuilder {
     private String name;
     private List<Product> products;
     private boolean deleted;
-
+    private LocalDateTime deletedAt;
+    private LocalDateTime updatedAt;
     public static CategoryBuilder builder(){
         return new CategoryBuilder();
     }
@@ -72,6 +74,21 @@ public class CategoryBuilder {
         return this;
     }
 
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
 
-    
+    public CategoryBuilder withDeletedAt(final LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
+        return this;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public CategoryBuilder withUpdatedAt(final LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
 }

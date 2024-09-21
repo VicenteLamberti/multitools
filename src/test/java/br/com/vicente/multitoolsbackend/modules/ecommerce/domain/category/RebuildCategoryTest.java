@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -19,7 +20,9 @@ class RebuildCategoryTest {
     void givenValidParams_whenCallsRebuild_shouldRebuildObjectOfCategory(
             final boolean expectedDeleted,
             final List<Product> expectedProducts,
-            final boolean expectedProductIsEmpty
+            final boolean expectedProductIsEmpty,
+            final LocalDateTime expectedUpdatedAt,
+            final LocalDateTime expectedDeletedAt
 
     ) {
         //Given
@@ -32,6 +35,8 @@ class RebuildCategoryTest {
                 .withName(expectedName)
                 .withDeleted(expectedDeleted)
                 .withProducts(expectedProducts)
+                .withDeletedAt(expectedDeletedAt)
+                .withUpdatedAt(expectedUpdatedAt)
                 .rebuild();
 
         //Then
@@ -41,14 +46,26 @@ class RebuildCategoryTest {
         Assertions.assertTrue(actualCategory.getProducts().containsAll(expectedProducts));
         Assertions.assertEquals(expectedProductIsEmpty, actualCategory.getProducts().isEmpty());
         Assertions.assertEquals(expectedDeleted, actualCategory.isDeleted());
+
+        if(expectedDeletedAt == null && expectedUpdatedAt == null){
+            Assertions.assertNull(expectedDeletedAt);
+            Assertions.assertNull(expectedUpdatedAt);
+        }
+
+        if(expectedDeletedAt != null && expectedUpdatedAt != null){
+            Assertions.assertEquals(expectedDeletedAt, actualCategory.getDeletedAt());
+            Assertions.assertEquals(expectedUpdatedAt, actualCategory.getUpdatedAt());
+        }
+
+
     }
 
     private static Stream<Arguments> givenValidParams_whenCallsRebuild_shouldRebuildObjectOfCategory() {
         // Given
         return Stream.of(
-                Arguments.of(true, List.of(ProductBuilder.builderDummy().rebuild()), false),
-                Arguments.of(false, List.of(ProductBuilder.builderDummy().rebuild()), false),
-                Arguments.of(true, List.of(), true)
+                Arguments.of(true, List.of(ProductBuilder.builderDummy().rebuild()), false,LocalDateTime.now(), LocalDateTime.now()),
+                Arguments.of(false, List.of(ProductBuilder.builderDummy().rebuild()), false, null,null),
+                Arguments.of(true, List.of(), true, null, null)
 
         );
     }

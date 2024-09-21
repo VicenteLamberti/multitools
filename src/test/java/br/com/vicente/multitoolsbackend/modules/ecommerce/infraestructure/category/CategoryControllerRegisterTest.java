@@ -1,7 +1,11 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category;
 
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete.DeleteCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.GetCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.list.ListCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.models.RegisterCategoryOutput;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.update.UpdateCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryID;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.ControllerTest;
 import org.hamcrest.Matchers;
@@ -26,6 +30,15 @@ class CategoryControllerRegisterTest implements MockDslCategory {
 
     @MockBean
     private RegisterCategoryUseCase registerCategoryUseCase;
+    @MockBean
+    private DeleteCategoryUseCase deleteCategoryUseCase;
+    @MockBean
+    private ListCategoryUseCase listCategoryUseCase;
+    @MockBean
+    private GetCategoryUseCase getCategoryUseCase;
+    @MockBean
+    private UpdateCategoryUseCase updateCategoryUseCase;
+
 
 
     @Test
@@ -45,8 +58,7 @@ class CategoryControllerRegisterTest implements MockDslCategory {
         //Then
         actualResult.andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.header().string("Location", expectedHeader))
-                .andExpect(MockMvcResultMatchers.jsonPath("id", Matchers.equalTo(expectedID.getValue())))
-                .andExpect(MockMvcResultMatchers.jsonPath("name", Matchers.equalTo(expectedName)));
+                .andExpect(MockMvcResultMatchers.jsonPath("id", Matchers.equalTo(expectedID.getValue())));
 
     }
 

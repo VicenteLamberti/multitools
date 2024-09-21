@@ -5,7 +5,9 @@ public class Strings {
     public static String ALREADY_DELETED = "alreadyDeleted";
     //B
     public static final String BAR = "/";
-
+    //D
+    public static final String DELETED = "deleted";
+    public static final String DELETED_AT = "deleted_at";
 
     //E
     public static String ERROR_AT_DELETE_CATEGORY = "errorAtDeleteCategory";
@@ -32,5 +34,6 @@ public class Strings {
     public static final String UNABLE_LIST_CATEGORY = "Unable to list category";
     public static final String UNABLE_REGISTER_CATEGORY = "Unable to register category";
     public static final String UNABLE_UPDATE_CATEGORY = "Unable to update category";
+    public static final String UPDATED_AT = "updated_at";
     public static final String URL_CATEGORIES = "/categories";
 }

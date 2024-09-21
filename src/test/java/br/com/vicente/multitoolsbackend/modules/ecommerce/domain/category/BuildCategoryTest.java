@@ -38,6 +38,8 @@ class BuildCategoryTest {
         Assertions.assertEquals(expectedName, actualCategory.getName());
         Assertions.assertTrue(actualCategory.getProducts().isEmpty());
         Assertions.assertFalse(actualCategory.isDeleted());
+        Assertions.assertNull(actualCategory.getUpdatedAt());
+        Assertions.assertNull(actualCategory.getDeletedAt());
     }
 
     @ParameterizedTest

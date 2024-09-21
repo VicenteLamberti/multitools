@@ -17,12 +17,16 @@ public class DeleteCategoryTest {
         //Given
         final Category category = CategoryBuilder.builderDummy().rebuild();
 
+        Assertions.assertFalse(category.isDeleted());
+        Assertions.assertNull(category.getDeletedAt());
         //When
         Assertions.assertDoesNotThrow(()->category.delete());
 
         //Then
         //TODO colocar clonable para comparar que nao teve alteracao
 //        Assertions.assertEquals();
+        Assertions.assertTrue(category.isDeleted());
+        Assertions.assertNotNull(category.getDeletedAt());
     }
 
     @Test

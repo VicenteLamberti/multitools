@@ -33,8 +33,8 @@ public class CategoryDbGateway implements CategoryGateway {
 
     @Override
     public void delete(final Category category) {
-        final CategoryJpa categoryJpa = CategoryJpa.from(category);
-        categoryRepository.delete(categoryJpa);
+        CategoryJpa categoryJpa = CategoryJpa.from(category);
+        categoryRepository.save(categoryJpa);
 
     }
 
