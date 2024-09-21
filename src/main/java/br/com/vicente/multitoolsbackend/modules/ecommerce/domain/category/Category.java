@@ -50,6 +50,11 @@ public class Category extends Entity<CategoryID> {
         }
     }
 
+    public void update(final String name) {
+        this.name = name;
+        selfValidate();
+    }
+
     //todo mudar para inativo
 //    public void inativar() {
 //        if (!this.products.isEmpty()) {
@@ -87,4 +92,6 @@ public class Category extends Entity<CategoryID> {
     public boolean isDeleted() {
         return deleted;
     }
+
+
 }

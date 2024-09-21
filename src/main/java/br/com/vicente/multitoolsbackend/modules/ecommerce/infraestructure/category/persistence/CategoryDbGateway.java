@@ -42,4 +42,9 @@ public class CategoryDbGateway implements CategoryGateway {
     public List<Category> list() {
         return categoryRepository.findAll().stream().map(CategoryJpa::toAggregate).toList();
     }
+
+    @Override
+    public void update(final Category category) {
+        categoryRepository.save(CategoryJpa.from(category));
+    }
 }

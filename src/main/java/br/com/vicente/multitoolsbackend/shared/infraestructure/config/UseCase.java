@@ -4,6 +4,7 @@ import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.d
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.GetCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.list.ListCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.update.UpdateCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +36,11 @@ public class UseCase {
     public GetCategoryUseCase getCategoryUseCase(){
         return new GetCategoryUseCase(categoryGateway);
     }
+    @Bean
+    public UpdateCategoryUseCase updateCategoryUseCase(){
+        return new UpdateCategoryUseCase(categoryGateway);
+    }
+
 
 
 

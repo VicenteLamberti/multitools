@@ -4,12 +4,14 @@ import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.catego
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.RegisterCategoryResponse;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.list.ListCategoryResponse;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.get.models.GetCategoryResponse;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.update.models.UpdateCategoryRequest;
 import br.com.vicente.multitoolsbackend.shared.Strings;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,4 +30,7 @@ public interface CategoryAPI {
     ResponseEntity<List<ListCategoryResponse>> list();
     @GetMapping(value = Strings.BAR + Strings.KEYS_ID)
     ResponseEntity <GetCategoryResponse> get(@PathVariable(name = Strings.ID) String id);
+
+    @PutMapping(value = Strings.BAR + Strings.KEYS_ID)
+    ResponseEntity<Void> update(@PathVariable(name = Strings.ID) String id, @RequestBody UpdateCategoryRequest request);
 }

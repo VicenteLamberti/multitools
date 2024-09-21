@@ -12,4 +12,6 @@ public interface CategoryGateway {
     void delete(final Category category);
 
     List<Category> list();
+
+    void update(Category category);
 }

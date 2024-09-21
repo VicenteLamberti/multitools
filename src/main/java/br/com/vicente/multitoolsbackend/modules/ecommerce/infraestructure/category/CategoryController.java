@@ -1,17 +1,20 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category;
 
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete.models.DeleteCategoryCommand;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete.DeleteCategoryUseCase;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.models.GetCategoryCommand;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete.models.DeleteCategoryCommand;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.GetCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.models.GetCategoryCommand;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.list.ListCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.models.RegisterCategoryCommand;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.models.RegisterCategoryOutput;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.update.UpdateCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.update.models.UpdateCategoryCommand;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.RegisterCategoryRequest;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.RegisterCategoryResponse;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.list.ListCategoryResponse;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.get.models.GetCategoryResponse;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.list.ListCategoryResponse;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.update.models.UpdateCategoryRequest;
 import br.com.vicente.multitoolsbackend.shared.Strings;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,17 +29,19 @@ public class CategoryController implements CategoryAPI {
     private final DeleteCategoryUseCase deleteCategoryUseCase;
     private final ListCategoryUseCase listCategoryUseCase;
     private final GetCategoryUseCase getCategoryUseCase;
+    private final UpdateCategoryUseCase updateCategoryUseCase;
 
     public CategoryController(
             final RegisterCategoryUseCase registerCategoryUseCase,
             final DeleteCategoryUseCase deleteCategoryUseCase,
             final ListCategoryUseCase listCategoryUseCase,
-            final GetCategoryUseCase getCategoryUseCase
+            final GetCategoryUseCase getCategoryUseCase, UpdateCategoryUseCase updateCategoryUseCase
     ) {
         this.registerCategoryUseCase = Objects.requireNonNull(registerCategoryUseCase);
         this.deleteCategoryUseCase = Objects.requireNonNull(deleteCategoryUseCase);
         this.listCategoryUseCase = Objects.requireNonNull(listCategoryUseCase);
         this.getCategoryUseCase = Objects.requireNonNull(getCategoryUseCase);
+        this.updateCategoryUseCase = Objects.requireNonNull(updateCategoryUseCase);
     }
 
     @Override
@@ -62,5 +67,17 @@ public class CategoryController implements CategoryAPI {
     public ResponseEntity<GetCategoryResponse> get(final String id) {
         final GetCategoryCommand cmd = GetCategoryCommand.with(id);
         return ResponseEntity.ok(GetCategoryResponse.from(getCategoryUseCase.execute(cmd)));
+    }
+
+    @Override
+    public ResponseEntity<Void> update(
+            final String id,
+            final UpdateCategoryRequest request
+    ) {
+        final String name = request.name();
+
+        final UpdateCategoryCommand cmd = UpdateCategoryCommand.with(id, name);
+        updateCategoryUseCase.execute(cmd);
+        return ResponseEntity.noContent().build();
     }
 }
