@@ -6,9 +6,15 @@ public class Strings {
     //B
     public static final String BAR = "/";
 
+
     //E
     public static String ERROR_AT_DELETE_CATEGORY = "errorAtDeleteCategory";
     public static String ERROR_AT_INSTANTIATE_CATEGORY = "errorAtInstantiateCategory";
+
+    //K
+    public static final String KEYS_ID = "{id}";
+
+
     //I
     public static final String ID = "id";
     //N

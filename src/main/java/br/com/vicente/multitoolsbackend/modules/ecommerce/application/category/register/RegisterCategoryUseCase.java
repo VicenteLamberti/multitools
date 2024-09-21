@@ -3,11 +3,11 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
 import br.com.vicente.multitoolsbackend.shared.Strings;
-import br.com.vicente.multitoolsbackend.shared.UseCase;
+import br.com.vicente.multitoolsbackend.shared.UseCaseInOut;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.Notification;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.ValidateNotification;
 
-public class RegisterCategoryUseCase implements UseCase<RegisterCategoryCommand, RegisterCategoryOutput> {
+public class RegisterCategoryUseCase implements UseCaseInOut<RegisterCategoryCommand, RegisterCategoryOutput> {
 
     private final CategoryGateway categoryGateway;
 

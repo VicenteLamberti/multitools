@@ -7,7 +7,6 @@ import br.com.vicente.multitoolsbackend.shared.infraestructure.exception.NotFoun
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class CategoryDbGateway implements CategoryGateway {
@@ -29,7 +28,7 @@ public class CategoryDbGateway implements CategoryGateway {
                 .findById(id.getValue())
                 .map(CategoryJpa::toAggregate)
                 //TODO mudar mensagem
-                .orElseThrow(()->new NotFoundException("Erro no gateway", List.of("Categoria não encontrada " + id.getValue())));
+                .orElseThrow(() -> new NotFoundException("Erro no gateway", List.of("Categoria não encontrada " + id.getValue())));
     }
 
     @Override
@@ -37,5 +36,10 @@ public class CategoryDbGateway implements CategoryGateway {
         final CategoryJpa categoryJpa = CategoryJpa.from(category);
         categoryRepository.delete(categoryJpa);
 
+    }
+
+    @Override
+    public List<Category> list() {
+        return categoryRepository.findAll().stream().map(CategoryJpa::toAggregate).toList();
     }
 }
