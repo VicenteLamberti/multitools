@@ -1,23 +1,19 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete;
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.IntegrationTest;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete.models.DeleteCategoryCommand;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryBuilder;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryID;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.Product;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.product.ProductBuilder;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.persistence.CategoryJpa;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.persistence.CategoryRepository;
-import br.com.vicente.multitoolsbackend.shared.usecase.exception.UseCaseException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.SpyBean;
-
-import java.util.List;
 
 @IntegrationTest
 class DeleteCategoryUseCaseITTest {

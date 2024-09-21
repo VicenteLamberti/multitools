@@ -1,4 +1,4 @@
-package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete.models;
 
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryID;

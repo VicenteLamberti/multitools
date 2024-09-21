@@ -3,7 +3,7 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.categ
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.RegisterCategoryRequest;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.RegisterCategoryResponse;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.list.ListCategoryResponse;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.list.list.GetCategoryResponse;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.get.models.GetCategoryResponse;
 import br.com.vicente.multitoolsbackend.shared.Strings;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

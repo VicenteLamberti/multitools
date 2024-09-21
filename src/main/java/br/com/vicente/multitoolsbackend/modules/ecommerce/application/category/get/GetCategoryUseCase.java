@@ -1,18 +1,18 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get;
 
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.models.GetCategoryCommand;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.models.GetCategoryOutput;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryID;
 import br.com.vicente.multitoolsbackend.shared.Strings;
 import br.com.vicente.multitoolsbackend.shared.UseCaseInOut;
-import br.com.vicente.multitoolsbackend.shared.UseCaseOut;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.Notification;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.ValidateNotification;
 
-import java.util.List;
 import java.util.Objects;
 
-public class GetCategoryUseCase implements UseCaseInOut<GetCategoryCommand,GetCategoryOutput> {
+public class GetCategoryUseCase implements UseCaseInOut<GetCategoryCommand, GetCategoryOutput> {
 
     private final CategoryGateway categoryGateway;
 

@@ -1,5 +1,6 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.list;
 
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.list.models.ListCategoryOutput;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
 import br.com.vicente.multitoolsbackend.shared.Strings;

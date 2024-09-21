@@ -1,7 +1,6 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.list;
 
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.list.ListCategoryOutput;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryOutput;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.list.models.ListCategoryOutput;
 import br.com.vicente.multitoolsbackend.shared.Strings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

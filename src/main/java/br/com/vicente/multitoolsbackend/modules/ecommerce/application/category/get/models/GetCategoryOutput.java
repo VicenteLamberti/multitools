@@ -1,4 +1,4 @@
-package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get;
+package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.models;
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryID;

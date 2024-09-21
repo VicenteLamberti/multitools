@@ -1,6 +1,6 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category;
 
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryOutput;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.models.RegisterCategoryOutput;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryID;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.ControllerTest;

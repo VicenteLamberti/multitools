@@ -1,5 +1,6 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete;
 
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete.models.DeleteCategoryCommand;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryBuilder;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
