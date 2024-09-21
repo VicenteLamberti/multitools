@@ -6,14 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record RegisterCategoryResponse(
         @JsonProperty(Strings.ID)
-        String id,
-        @JsonProperty(Strings.NAME)
-        String name
+        String id
 ) {
     public static RegisterCategoryResponse from(final RegisterCategoryOutput output) {
         return new RegisterCategoryResponse(
-                output.id().getValue(),
-                output.name()
+                output.id().getValue()
         );
     }
 }

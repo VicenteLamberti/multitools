@@ -45,10 +45,8 @@ class RegisterCategoryUseCaseITTest {
 
         Assertions.assertNotNull(actualOutput);
         Assertions.assertNotNull(actualOutput.id());
-        Assertions.assertEquals(expectedName, actualOutput.name());
 
         Assertions.assertEquals(actualOutput.id(), categoryWasPassedToGateway.getId());
-        Assertions.assertEquals(actualOutput.name(), categoryWasPassedToGateway.getName());
 
         final CategoryJpa categoryJpa = categoryRepository.findAll().getFirst();
 

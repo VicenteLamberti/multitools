@@ -42,10 +42,8 @@ class RegisterCategoryUseCaseTest {
 
         Assertions.assertNotNull(actualOutput);
         Assertions.assertNotNull(actualOutput.id());
-        Assertions.assertEquals(expectedName, actualOutput.name());
 
         Assertions.assertEquals(actualOutput.id(), categoryWasPassedToGateway.getId());
-        Assertions.assertEquals(actualOutput.name(), categoryWasPassedToGateway.getName());
     }
 
     @Test

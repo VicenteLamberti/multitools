@@ -4,14 +4,12 @@ import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.Catego
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryID;
 
 public record RegisterCategoryOutput(
-        CategoryID id,
-        String name
+        CategoryID id
 ) {
 
     public static RegisterCategoryOutput from(final Category category){
         return new RegisterCategoryOutput(
-                category.getId(),
-                category.getName()
+                category.getId()
         );
     }
 }

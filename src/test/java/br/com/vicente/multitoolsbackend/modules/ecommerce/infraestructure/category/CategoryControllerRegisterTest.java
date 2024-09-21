@@ -37,7 +37,7 @@ class CategoryControllerRegisterTest implements MockDslCategory {
         final CategoryID expectedID = CategoryID.generate();
         final String expectedHeader = "/categories/" + expectedID.getValue();
 
-        Mockito.when(registerCategoryUseCase.execute(Mockito.any())).thenReturn(new RegisterCategoryOutput(expectedID, expectedName));
+        Mockito.when(registerCategoryUseCase.execute(Mockito.any())).thenReturn(new RegisterCategoryOutput(expectedID));
 
         //When
         final ResultActions actualResult = register(expectedName);
