@@ -50,4 +50,5 @@ flyway {
 	user = System.getenv('FLYWAY_USER') ?: 'vicente'
 	password = System.getenv('FLYWAY_PASS') ?: '123456'
 	outOfOrder = true
+	cleanDisabled = false
 }

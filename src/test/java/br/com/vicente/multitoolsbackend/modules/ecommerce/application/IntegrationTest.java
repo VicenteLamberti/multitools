@@ -1,5 +1,7 @@
 package br.com.vicente.multitoolsbackend.modules.ecommerce.application;
 
+import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.SQLCleanUpExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -12,8 +14,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-@SpringBootTest
+@SpringBootTest(properties = "spring.flyway.clean-disabled=false")
 @ActiveProfiles("test-integration")
+@ExtendWith(value = {SQLCleanUpExtension.class})
 public @interface IntegrationTest {
 
 }
