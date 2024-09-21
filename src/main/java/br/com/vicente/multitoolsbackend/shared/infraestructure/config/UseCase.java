@@ -1,6 +1,7 @@
 package br.com.vicente.multitoolsbackend.shared.infraestructure.config;
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete.DeleteCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.GetCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.list.ListCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
@@ -29,6 +30,12 @@ public class UseCase {
     public ListCategoryUseCase listCategoryUseCase(){
         return new ListCategoryUseCase(categoryGateway);
     }
+
+    @Bean
+    public GetCategoryUseCase getCategoryUseCase(){
+        return new GetCategoryUseCase(categoryGateway);
+    }
+
 
 
 }

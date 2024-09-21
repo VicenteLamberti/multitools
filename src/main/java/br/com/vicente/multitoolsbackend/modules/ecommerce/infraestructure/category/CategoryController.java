@@ -2,6 +2,9 @@ package br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.categ
 
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete.DeleteCategoryCommand;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete.DeleteCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.GetCategoryCommand;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.GetCategoryOutput;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.GetCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.list.ListCategoryOutput;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.list.ListCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryCommand;
@@ -10,6 +13,7 @@ import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.r
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.RegisterCategoryRequest;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.RegisterCategoryResponse;
 import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.list.ListCategoryResponse;
+import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.list.list.GetCategoryResponse;
 import br.com.vicente.multitoolsbackend.shared.Strings;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,15 +27,18 @@ public class CategoryController implements CategoryAPI {
     private final RegisterCategoryUseCase registerCategoryUseCase;
     private final DeleteCategoryUseCase deleteCategoryUseCase;
     private final ListCategoryUseCase listCategoryUseCase;
+    private final GetCategoryUseCase getCategoryUseCase;
 
     public CategoryController(
             final RegisterCategoryUseCase registerCategoryUseCase,
             final DeleteCategoryUseCase deleteCategoryUseCase,
-            final ListCategoryUseCase listCategoryUseCase
+            final ListCategoryUseCase listCategoryUseCase,
+            final GetCategoryUseCase getCategoryUseCase
     ) {
         this.registerCategoryUseCase = Objects.requireNonNull(registerCategoryUseCase);
         this.deleteCategoryUseCase = Objects.requireNonNull(deleteCategoryUseCase);
         this.listCategoryUseCase = Objects.requireNonNull(listCategoryUseCase);
+        this.getCategoryUseCase = Objects.requireNonNull(getCategoryUseCase);
     }
 
     @Override
@@ -51,5 +58,11 @@ public class CategoryController implements CategoryAPI {
     @Override
     public ResponseEntity<List<ListCategoryResponse>> list() {
         return ResponseEntity.ok(listCategoryUseCase.execute().stream().map(ListCategoryResponse::from).toList());
+    }
+
+    @Override
+    public ResponseEntity<GetCategoryResponse> get(final String id) {
+        final GetCategoryCommand cmd = GetCategoryCommand.with(id);
+        return ResponseEntity.ok(GetCategoryResponse.from(getCategoryUseCase.execute(cmd)));
     }
 }
