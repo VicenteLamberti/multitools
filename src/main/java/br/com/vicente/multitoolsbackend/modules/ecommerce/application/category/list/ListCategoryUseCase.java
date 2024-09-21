@@ -21,7 +21,7 @@ public class ListCategoryUseCase implements UseCaseOut<List<ListCategoryOutput>>
 
     @Override
     public List<ListCategoryOutput> execute() {
-        final Notification notification = Notification.create();
+        final Notification notification = Notification.create(Strings.UNABLE_LIST_CATEGORY);
         final List<Category> categories = notification.validate(categoryGateway::list);
         ValidateNotification.useCaseCheckHasErrors(notification, Strings.UNABLE_LIST_CATEGORY);
         return categories.stream().map(ListCategoryOutput::from).toList();

@@ -19,7 +19,7 @@ public class UpdateCategoryUseCase implements UseCaseIn<UpdateCategoryCommand> {
     }
 
     public void execute(final UpdateCategoryCommand cmd){
-        final Notification notification = Notification.create();
+        final Notification notification = Notification.create(Strings.UNABLE_UPDATE_CATEGORY);
         final CategoryID id = cmd.id();
         final String name = cmd.name();
 
@@ -28,17 +28,11 @@ public class UpdateCategoryUseCase implements UseCaseIn<UpdateCategoryCommand> {
 
         ValidateNotification.useCaseCheckHasErrors(notification, Strings.UNABLE_UPDATE_CATEGORY);
 
-        notification.validate(()->{
-            category.update(name);
-            return null;
-        });
+        notification.validateVoid(()->category.update(name));
 
         ValidateNotification.useCaseCheckHasErrors(notification,Strings.UNABLE_UPDATE_CATEGORY);
 
-        notification.validate(()->{
-            categoryGateway.update(category);
-            return null;
-        });
+        notification.validateVoid(()->categoryGateway.update(category));
 
         ValidateNotification.useCaseCheckHasErrors(notification,Strings.UNABLE_DELETE_CATEGORY);
     }

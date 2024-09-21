@@ -36,12 +36,18 @@ class DeleteCategoryUseCaseITTest {
 
         Assertions.assertEquals(1, categoryRepository.count());
 
+        Assertions.assertFalse(category.isDeleted());
+        Assertions.assertNull(category.getDeletedAt());
         //When
         Assertions.assertDoesNotThrow(() -> useCase.execute(cmd));
 
         //Then
+        final CategoryJpa categoryJpa = categoryRepository.findById(categoryID.getValue()).orElseThrow();
         Mockito.verify(categoryGateway, Mockito.times(1)).delete(category);
-        Assertions.assertEquals(0, categoryRepository.count());
+        Assertions.assertEquals(1, categoryRepository.count());
+        Assertions.assertTrue(categoryJpa.isDeleted());
+        Assertions.assertNotNull(categoryJpa.getDeletedAt());
+
 
 
     }

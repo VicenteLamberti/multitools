@@ -8,6 +8,7 @@ public interface ValidationHandler {
     ValidationHandler append(ValidationHandler handler);
 
     <T> T validate(Validation<T> validation);
+    <T> T validateAndThrows(Validation<T> validation);
 
     List<String> getErrors();
 
@@ -18,4 +19,8 @@ public interface ValidationHandler {
     interface Validation<T> {
         T validate();
     }
+
+    void validateVoid(Runnable action);
+    void validateVoidAndThrows(Runnable action);
+    void throwsIfHasError();
 }

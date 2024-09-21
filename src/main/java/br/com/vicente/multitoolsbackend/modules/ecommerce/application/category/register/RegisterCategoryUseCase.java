@@ -19,15 +19,16 @@ public class RegisterCategoryUseCase implements UseCaseInOut<RegisterCategoryCom
 
     @Override
     public RegisterCategoryOutput execute(final RegisterCategoryCommand cmd) {
+        final Notification notification = Notification.create(Strings.UNABLE_REGISTER_CATEGORY);
+
         final String name = cmd.name();
-        final Notification notification = Notification.create();
+
         final Category category = notification.validate(() -> Category.register(name));
         ValidateNotification.useCaseCheckHasErrors(notification, Strings.UNABLE_REGISTER_CATEGORY);
-        notification.validate(()->{
-            categoryGateway.register(category);
-            return null;
-        });
+
+        notification.validateVoid(()->categoryGateway.register(category));
         ValidateNotification.useCaseCheckHasErrors(notification, Strings.UNABLE_REGISTER_CATEGORY);
+
         return RegisterCategoryOutput.from(category);
     }
 }

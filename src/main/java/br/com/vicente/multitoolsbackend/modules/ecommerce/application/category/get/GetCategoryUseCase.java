@@ -22,7 +22,7 @@ public class GetCategoryUseCase implements UseCaseInOut<GetCategoryCommand, GetC
 
     @Override
     public GetCategoryOutput execute(final GetCategoryCommand cmd) {
-        final Notification notification = Notification.create();
+        final Notification notification = Notification.create(Strings.UNABLE_GET_CATEGORY);
         final CategoryID id = cmd.id();
         final Category category = notification.validate(()->categoryGateway.getByID(id));
         ValidateNotification.useCaseCheckHasErrors(notification, Strings.UNABLE_GET_CATEGORY);

@@ -19,19 +19,15 @@ public class DeleteCategoryUseCase implements UseCaseIn<DeleteCategoryCommand> {
 
     public void execute(final DeleteCategoryCommand cmd){
         final CategoryID id = cmd.id();
-        final Notification notification = Notification.create();
+        final Notification notification = Notification.create(Strings.UNABLE_DELETE_CATEGORY);
 
         final Category category = notification.validate(()->categoryGateway.getByID(id));
         ValidateNotification.useCaseCheckHasErrors(notification, Strings.UNABLE_DELETE_CATEGORY);
-        notification.validate(()->{
-            category.delete();
-            return null;
-        });
+
+        notification.validateVoid(()->category.delete());
         ValidateNotification.useCaseCheckHasErrors(notification,Strings.UNABLE_DELETE_CATEGORY);
-        notification.validate(()->{
-            categoryGateway.delete(category);
-            return null;
-        });
+
+        notification.validateVoid(()->categoryGateway.delete(category));
         ValidateNotification.useCaseCheckHasErrors(notification,Strings.UNABLE_DELETE_CATEGORY);
     }
 }
