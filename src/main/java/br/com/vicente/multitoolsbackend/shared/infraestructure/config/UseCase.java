@@ -1,11 +1,11 @@
 package br.com.vicente.multitoolsbackend.shared.infraestructure.config;
 
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.delete.DeleteCategoryUseCase;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.get.GetCategoryUseCase;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.list.ListCategoryUseCase;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.register.RegisterCategoryUseCase;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.application.category.update.UpdateCategoryUseCase;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.domain.category.CategoryGateway;
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.delete.DeleteCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.get.GetCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.list.ListCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.register.RegisterCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.update.UpdateCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.CategoryGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
