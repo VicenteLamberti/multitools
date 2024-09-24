@@ -3,6 +3,7 @@ package br.com.vicente.multitoolsbackend.shared.infraestructure.exception;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.DomainException;
 import br.com.vicente.multitoolsbackend.shared.usecase.exception.UseCaseException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public record InfraError (
@@ -14,6 +15,12 @@ public record InfraError (
         return new InfraError(
                 ex.getMessage(),
                 ex.getErrors()
+        );
+    }
+    public static InfraError from (final NotFoundSimpleException ex){
+        return new InfraError(
+                ex.getMessage(),
+                new ArrayList<>()
         );
     }
 

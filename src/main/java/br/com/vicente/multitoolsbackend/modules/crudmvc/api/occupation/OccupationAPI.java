@@ -34,5 +34,5 @@ public interface OccupationAPI {
     ResponseEntity <GetOccupationResponse> get(@PathVariable(name = Strings.ID) Long id);
 
     @PutMapping(value = Strings.BAR + Strings.KEYS_ID)
-    ResponseEntity<Void> update(@PathVariable(name = Strings.ID) Long id, @RequestBody UpdateOccupationRequest request);
+    ResponseEntity<Void> update(@PathVariable(name = Strings.ID) Long id, @Valid @RequestBody UpdateOccupationRequest request);
 }

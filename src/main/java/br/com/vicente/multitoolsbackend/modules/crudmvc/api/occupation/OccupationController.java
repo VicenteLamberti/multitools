@@ -24,7 +24,7 @@ public class OccupationController implements OccupationAPI {
     @Override
     public ResponseEntity<RegisterOccupationResponse> create(final RegisterOccupationRequest request) {
         RegisterOccupationResponse register = occupationService.register(request);
-        return ResponseEntity.created(URI.create(Strings.URL_CATEGORIES + Strings.BAR + register.id())).body(register);
+        return ResponseEntity.created(URI.create(Strings.URL_OCCUPATION + Strings.BAR + register.id())).body(register);
     }
 
     @Override
