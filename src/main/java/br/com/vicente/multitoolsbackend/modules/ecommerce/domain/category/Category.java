@@ -5,7 +5,6 @@ import br.com.vicente.multitoolsbackend.shared.Strings;
 import br.com.vicente.multitoolsbackend.shared.domain.Entity;
 import br.com.vicente.multitoolsbackend.shared.domain.exception.DomainException;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;

@@ -36,4 +36,5 @@ public class Strings {
     public static final String UNABLE_UPDATE_CATEGORY = "Unable to update category";
     public static final String UPDATED_AT = "updated_at";
     public static final String URL_CATEGORIES = "/categories";
+    public static final String URL_OCCUPATION = "/occupation";
 }
