@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity(name = "Category")
-@Table(name = "CATEGORY")
+@Table(name = "CATEGORY", schema = "crudcleanarchddd")
 public class CategoryJpa {
     @Column(name = "ID", nullable = false)
     @Id

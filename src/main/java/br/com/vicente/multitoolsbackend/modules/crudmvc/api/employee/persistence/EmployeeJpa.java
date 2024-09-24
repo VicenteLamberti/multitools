@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity(name = "Employee")
-@Table(name = "EMPLOYEE")
+@Table(name = "EMPLOYEE", schema = "crudmvc")
 public class EmployeeJpa {
 
     @Column(name = "ID", nullable = false)

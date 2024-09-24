@@ -5,11 +5,6 @@ import br.com.vicente.multitoolsbackend.modules.crudmvc.api.occupation.create.mo
 import br.com.vicente.multitoolsbackend.modules.crudmvc.api.occupation.get.models.GetOccupationResponse;
 import br.com.vicente.multitoolsbackend.modules.crudmvc.api.occupation.list.models.ListOccupationResponse;
 import br.com.vicente.multitoolsbackend.modules.crudmvc.api.occupation.update.models.UpdateOccupationRequest;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.RegisterCategoryRequest;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.create.models.RegisterCategoryResponse;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.list.ListCategoryResponse;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.get.models.GetCategoryResponse;
-import br.com.vicente.multitoolsbackend.modules.ecommerce.infraestructure.category.update.models.UpdateCategoryRequest;
 import br.com.vicente.multitoolsbackend.shared.Strings;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

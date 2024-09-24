@@ -13,7 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity(name = "Product")
-@Table(name = "PRODUCT")
+@Table(name = "PRODUCT", schema = "crudcleanarchddd")
 public class ProductJpa {
 
     @Column(name = "ID", nullable = false)
