@@ -17,7 +17,6 @@ public class EmployeeJpa {
     @Id
     private String id;
     @Column(name = "NAME", nullable = false, length = 255)
-    @Id
     private String name;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "OCCUPATION_ID", nullable = false)

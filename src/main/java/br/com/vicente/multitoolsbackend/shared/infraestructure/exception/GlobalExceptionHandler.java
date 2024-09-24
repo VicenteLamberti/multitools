@@ -43,4 +43,10 @@ public class GlobalExceptionHandler {
         });
         return ResponseEntity.badRequest().body(errorsForm);
     }
+
+    @ExceptionHandler(value = Exception.class)
+    public ResponseEntity<InfraError> handleException(final Exception ex) {
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(InfraError.from(ex));
+    }
 }

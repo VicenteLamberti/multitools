@@ -20,7 +20,6 @@ public class ProductJpa {
     @Id
     private String id;
     @Column(name = "NAME", nullable = false, length = 255)
-    @Id
     private String name;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CATEGORY_ID", nullable = false)

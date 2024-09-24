@@ -1,5 +1,6 @@
 package br.com.vicente.multitoolsbackend.modules.crudmvc.service;
 
+import br.com.vicente.multitoolsbackend.shared.Strings;
 import br.com.vicente.multitoolsbackend.shared.infraestructure.exception.NotFoundException;
 import br.com.vicente.multitoolsbackend.modules.crudmvc.api.occupation.create.models.RegisterOccupationRequest;
 import br.com.vicente.multitoolsbackend.modules.crudmvc.api.occupation.create.models.RegisterOccupationResponse;
@@ -16,7 +17,6 @@ import java.util.List;
 
 @Service
 public class OccupationService {
-    public static final String CATEGORY_NOT_FOUND = "Category not found";
     private final OccupationRepository occupationRepository;
 
     public OccupationService(final OccupationRepository occupationRepository) {
@@ -27,7 +27,7 @@ public class OccupationService {
 
         final OccupationJpa occupation = occupationRepository.
                 findById(id)
-                .orElseThrow(() -> new NotFoundException(CATEGORY_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(Strings.UNABLE_DELETE_OCCUPATION,List.of(Strings.OCCUPATION_NOT_FOUND + id)));
 
         occupation.setDeleted(true);
         occupation.setDeletedAt(LocalDateTime.now());
@@ -39,7 +39,7 @@ public class OccupationService {
     public GetOccupationResponse get(final Long id) {
         final OccupationJpa occupation = occupationRepository.
                 findById(id)
-                .orElseThrow(() -> new NotFoundException(CATEGORY_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(Strings.UNABLE_GET_OCCUPATION,List.of(Strings.OCCUPATION_NOT_FOUND + id)));
 
         return GetOccupationResponse.from(occupation);
 
@@ -63,7 +63,7 @@ public class OccupationService {
 
         final OccupationJpa occupation = occupationRepository.
                 findById(id)
-                .orElseThrow(() -> new NotFoundException(CATEGORY_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(Strings.UNABLE_UPDATE_OCCUPATION,List.of(Strings.OCCUPATION_NOT_FOUND + id)));
 
         occupation.setName(request.name());
         occupation.setUpdatedAt(LocalDateTime.now());

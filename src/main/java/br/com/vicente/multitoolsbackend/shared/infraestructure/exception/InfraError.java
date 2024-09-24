@@ -13,7 +13,7 @@ public record InfraError (
     public static InfraError from (final NotFoundException ex){
         return new InfraError(
                 ex.getMessage(),
-                new ArrayList<>()
+                ex.getErrors()
         );
     }
 
@@ -21,6 +21,12 @@ public record InfraError (
         return new InfraError(
                 ex.getMessage(),
                 ex.getErrors()
+        );
+    }
+    public static InfraError from (final Exception ex){
+        return new InfraError(
+                "Internal error.",
+                new ArrayList<>()
         );
     }
 }
