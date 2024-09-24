@@ -1,7 +1,7 @@
 package br.com.vicente.multitoolsbackend.shared.domain.exception;
 
 
-import br.com.vicente.multitoolsbackend.shared.usecase.exception.UseCaseException;
+import br.com.vicente.multitoolsbackend.shared.usecase.exception.NotificationException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +76,7 @@ public class Notification implements ValidationHandler {
     @Override
     public void throwsIfHasError() {
         if (this.hasError()) {
-            throw new UseCaseException(this.message, this.errorMessages);
+            throw new NotificationException(this.message, this.errorMessages);
         }
     }
 

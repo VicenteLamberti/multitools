@@ -7,7 +7,7 @@ import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.CategoryID;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.product.Product;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.product.ProductBuilder;
-import br.com.vicente.multitoolsbackend.shared.usecase.exception.UseCaseException;
+import br.com.vicente.multitoolsbackend.shared.usecase.exception.NotificationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,7 +58,7 @@ class DeleteCategoryUseCaseTest {
         Mockito.when(categoryGateway.getByID(categoryID)).thenThrow(new RuntimeException("Any message"));
 
         //When
-        final UseCaseException actualException = Assertions.assertThrows(UseCaseException.class, () -> useCase.execute(cmd));
+        final NotificationException actualException = Assertions.assertThrows(NotificationException.class, () -> useCase.execute(cmd));
 
         Mockito.verify(categoryGateway,Mockito.times(0)).delete(Mockito.any());
 
@@ -85,7 +85,7 @@ class DeleteCategoryUseCaseTest {
         Mockito.when(categoryGateway.getByID(categoryID)).thenReturn(category);
 
         //When
-        final UseCaseException actualException = Assertions.assertThrows(UseCaseException.class, () -> useCase.execute(cmd));
+        final NotificationException actualException = Assertions.assertThrows(NotificationException.class, () -> useCase.execute(cmd));
         Mockito.verify(categoryGateway,Mockito.times(0)).delete(Mockito.any());
 
         Assertions.assertNotNull(actualException);
@@ -106,7 +106,7 @@ class DeleteCategoryUseCaseTest {
         Mockito.doThrow(new RuntimeException("Any error")).when(categoryGateway).delete(category);
 
         //When
-        final UseCaseException actualException = Assertions.assertThrows(UseCaseException.class, () -> useCase.execute(cmd));
+        final NotificationException actualException = Assertions.assertThrows(NotificationException.class, () -> useCase.execute(cmd));
 
         Assertions.assertNotNull(actualException);
         Assertions.assertEquals(expectedExceptionMessage, actualException.getMessage());

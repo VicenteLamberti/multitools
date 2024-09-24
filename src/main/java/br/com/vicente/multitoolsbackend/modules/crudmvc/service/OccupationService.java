@@ -1,6 +1,6 @@
 package br.com.vicente.multitoolsbackend.modules.crudmvc.service;
 
-import br.com.vicente.multitoolsbackend.shared.infraestructure.exception.NotFoundSimpleException;
+import br.com.vicente.multitoolsbackend.shared.infraestructure.exception.NotFoundException;
 import br.com.vicente.multitoolsbackend.modules.crudmvc.api.occupation.create.models.RegisterOccupationRequest;
 import br.com.vicente.multitoolsbackend.modules.crudmvc.api.occupation.create.models.RegisterOccupationResponse;
 import br.com.vicente.multitoolsbackend.modules.crudmvc.api.occupation.get.models.GetOccupationResponse;
@@ -27,7 +27,7 @@ public class OccupationService {
 
         final OccupationJpa occupation = occupationRepository.
                 findById(id)
-                .orElseThrow(() -> new NotFoundSimpleException(CATEGORY_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(CATEGORY_NOT_FOUND));
 
         occupation.setDeleted(true);
         occupation.setDeletedAt(LocalDateTime.now());
@@ -39,7 +39,7 @@ public class OccupationService {
     public GetOccupationResponse get(final Long id) {
         final OccupationJpa occupation = occupationRepository.
                 findById(id)
-                .orElseThrow(() -> new NotFoundSimpleException(CATEGORY_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(CATEGORY_NOT_FOUND));
 
         return GetOccupationResponse.from(occupation);
 
@@ -63,7 +63,7 @@ public class OccupationService {
 
         final OccupationJpa occupation = occupationRepository.
                 findById(id)
-                .orElseThrow(() -> new NotFoundSimpleException(CATEGORY_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(CATEGORY_NOT_FOUND));
 
         occupation.setName(request.name());
         occupation.setUpdatedAt(LocalDateTime.now());

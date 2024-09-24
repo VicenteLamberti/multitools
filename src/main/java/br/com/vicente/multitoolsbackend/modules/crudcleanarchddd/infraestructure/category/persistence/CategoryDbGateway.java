@@ -3,6 +3,7 @@ package br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.infraestructur
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.CategoryGateway;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.CategoryID;
+import br.com.vicente.multitoolsbackend.shared.Strings;
 import br.com.vicente.multitoolsbackend.shared.infraestructure.exception.NotFoundException;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +29,7 @@ public class CategoryDbGateway implements CategoryGateway {
                 .findById(id.getValue())
                 .map(CategoryJpa::toAggregate)
                 //TODO mudar mensagem
-                .orElseThrow(() -> new NotFoundException("Erro no gateway", List.of("Categoria não encontrada " + id.getValue())));
+                .orElseThrow(() -> new NotFoundException(Strings.CATEGORY_NOT_FOUND + id.getValue()));
     }
 
     @Override

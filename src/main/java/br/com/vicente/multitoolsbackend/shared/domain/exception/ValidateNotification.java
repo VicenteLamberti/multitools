@@ -1,6 +1,6 @@
 package br.com.vicente.multitoolsbackend.shared.domain.exception;
 
-import br.com.vicente.multitoolsbackend.shared.usecase.exception.UseCaseException;
+import br.com.vicente.multitoolsbackend.shared.usecase.exception.NotificationException;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class ValidateNotification {
             final List<String> errors = notification.getErrors();
             //TODO adicionar logger
             errors.forEach(error-> System.out.println("LOGGER ERROR - " + error));
-            throw new UseCaseException(exceptionMessage, errors);
+            throw new NotificationException(exceptionMessage, errors);
         }
     }
 }

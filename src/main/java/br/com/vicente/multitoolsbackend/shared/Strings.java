@@ -1,17 +1,18 @@
 package br.com.vicente.multitoolsbackend.shared;
 
 public class Strings {
-    //A
-    public static String ALREADY_DELETED = "alreadyDeleted";
     //B
     public static final String BAR = "/";
+
+    //C
+    public static final String CATEGORY_NOT_FOUND = "Category not found: ";
     //D
     public static final String DELETED = "deleted";
     public static final String DELETED_AT = "deleted_at";
 
     //E
-    public static String ERROR_AT_DELETE_CATEGORY = "errorAtDeleteCategory";
-    public static String ERROR_AT_INSTANTIATE_CATEGORY = "errorAtInstantiateCategory";
+    public static String ERROR_AT_DELETE_CATEGORY = "An error occurred while deleting category.";
+    public static String ERROR_AT_INSTANTIATE_CATEGORY = "An error occurred while instantiate category.";
 
     //K
     public static final String KEYS_ID = "{id}";
@@ -21,12 +22,12 @@ public class Strings {
     public static final String ID = "id";
     //N
     public static final String NAME = "name";
-    public static String NAME_SHOULD_NOT_BE_BLANK = "nameShouldNotBeBlank";
-    public static String NAME_SHOULD_NOT_BE_EMPTY = "nameShouldNotBeEmpty";
-    public static String NAME_SHOULD_NOT_BE_GREATER_THAN_255_CHARACTER = "nameShouldNotBeMoreThan255Character";
+    public static String NAME_SHOULD_NOT_BE_BLANK = "Name should not be blank.";
+    public static String NAME_SHOULD_NOT_BE_EMPTY = "Name should not be empty.";
+    public static String NAME_SHOULD_NOT_BE_GREATER_THAN_255_CHARACTER = "Name should not be greater than 255 characters.";
 
     //P
-    public static String PRODUCTS_LINKED = "productsLinked";
+    public static String PRODUCTS_LINKED = "There are linked products.";
 
     //U
     public static final String UNABLE_DELETE_CATEGORY = "Unable to delete category";

@@ -4,7 +4,7 @@ import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.cat
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.register.models.RegisterCategoryOutput;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.CategoryGateway;
-import br.com.vicente.multitoolsbackend.shared.usecase.exception.UseCaseException;
+import br.com.vicente.multitoolsbackend.shared.usecase.exception.NotificationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,7 +56,7 @@ class RegisterCategoryUseCaseTest {
         final RegisterCategoryCommand cmd = RegisterCategoryCommand.with(name);
 
         //When
-        final UseCaseException actualException = assertThrows(UseCaseException.class, () -> useCase.execute(cmd));
+        final NotificationException actualException = assertThrows(NotificationException.class, () -> useCase.execute(cmd));
 
         //Then
         Mockito.verify(categoryGateway,Mockito.never()).register(Mockito.any());
@@ -77,7 +77,7 @@ class RegisterCategoryUseCaseTest {
         Mockito.doThrow(new RuntimeException(expectedErrors.getFirst())).when(categoryGateway).register(Mockito.any());
 
         //When
-        final UseCaseException actualException = assertThrows(UseCaseException.class, () -> useCase.execute(cmd));
+        final NotificationException actualException = assertThrows(NotificationException.class, () -> useCase.execute(cmd));
 
         //Then
         Assertions.assertNotNull(actualException);

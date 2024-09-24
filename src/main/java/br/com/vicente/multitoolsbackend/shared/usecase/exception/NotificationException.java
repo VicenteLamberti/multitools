@@ -5,10 +5,10 @@ import br.com.vicente.multitoolsbackend.shared.domain.exception.NoStacktraceExce
 import java.util.Collections;
 import java.util.List;
 
-public class UseCaseException extends NoStacktraceException {
+public class NotificationException extends NoStacktraceException {
 
     protected final List<String>errors;
-    public UseCaseException(final String message, final List<String> errors) {
+    public NotificationException(final String message, final List<String> errors) {
         super(message);
         this.errors = errors;
     }
