@@ -1,34 +1,32 @@
-package br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.register;
+package br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category;
 
-import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.IntegrationTest;
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.register.RegisterCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.register.models.RegisterCategoryCommand;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.register.models.RegisterCategoryOutput;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.CategoryGateway;
-import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.infraestructure.category.persistence.CategoryJpa;
-import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.infraestructure.category.persistence.CategoryRepository;
 import br.com.vicente.multitoolsbackend.shared.usecase.exception.NotificationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
-@IntegrationTest
-class RegisterCategoryUseCaseITTest {
-    @SpyBean
+@ExtendWith(MockitoExtension.class)
+class RegisterCategoryUseCaseTest {
+    @Mock
     private CategoryGateway categoryGateway;
 
-    @Autowired
+    @InjectMocks
     private RegisterCategoryUseCase useCase;
-    @Autowired
-    private CategoryRepository categoryRepository;
 
     @Test
     @DisplayName("Deve retornar o output do objeto Category persistido")
@@ -49,18 +47,6 @@ class RegisterCategoryUseCaseITTest {
         Assertions.assertNotNull(actualOutput.id());
 
         Assertions.assertEquals(actualOutput.id(), categoryWasPassedToGateway.getId());
-
-        final CategoryJpa categoryJpa = categoryRepository.findAll().getFirst();
-
-        Assertions.assertNotNull(categoryJpa);
-        Assertions.assertEquals(actualOutput.id().getValue(), categoryJpa.getId());
-        Assertions.assertEquals(expectedName, categoryJpa.getName());
-
-        //TODO colocar specification
-//        Assertions.assertTrue(categoryJpa.getProducts().isEmpty());
-
-
-
     }
 
     @Test
@@ -75,16 +61,16 @@ class RegisterCategoryUseCaseITTest {
 
         //Then
         Mockito.verify(categoryGateway,Mockito.never()).register(Mockito.any());
+
         Assertions.assertNotNull(actualException);
         Assertions.assertFalse(actualException.getErrors().isEmpty());
-        Assertions.assertEquals(0, categoryRepository.count());
     }
 
     @Test
     @DisplayName("Caso ocorra uma exceção no método de Register do gateway, deve ser capturado, e lançado no use case com os erros que ocorreram no gateway")
     void givenOccurExceptionInMethodRegisterOfGateway_whenCallsExecute_shouldThrowsExceptionInUseCase(){
         //Given
-        final String expectedExceptionMessage = "Unable to register category";
+        final String expectedExceptionMessage = "Unable to register category.";
         final List<String> expectedErrors = List.of("Error in gateway");
         final String name = "Category Name";
         final RegisterCategoryCommand cmd = RegisterCategoryCommand.with(name);
@@ -99,7 +85,6 @@ class RegisterCategoryUseCaseITTest {
         Assertions.assertEquals(expectedExceptionMessage, actualException.getMessage());
         Assertions.assertFalse(actualException.getErrors().isEmpty());
         Assertions.assertTrue(actualException.getErrors().containsAll(expectedErrors));
-        Assertions.assertEquals(0, categoryRepository.count());
     }
 
 }

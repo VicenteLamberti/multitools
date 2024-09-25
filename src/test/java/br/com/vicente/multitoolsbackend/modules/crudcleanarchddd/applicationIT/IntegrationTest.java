@@ -1,4 +1,4 @@
-package br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application;
+package br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.applicationIT;
 
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.infraestructure.SQLCleanUpExtension;
 import org.junit.jupiter.api.extension.ExtendWith;

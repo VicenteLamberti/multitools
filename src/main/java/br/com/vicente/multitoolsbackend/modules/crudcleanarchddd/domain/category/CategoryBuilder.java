@@ -27,7 +27,10 @@ public class CategoryBuilder {
                 .withId(CategoryID.generate())
                 .withName("Category Name")
                 .withDeleted(false)
-                .withProducts(new ArrayList<>());
+                .withProducts(new ArrayList<>())
+                .withUpdatedAt(null)
+                .withDeletedAt(null);
+
         return categoryBuilder;
     }
 

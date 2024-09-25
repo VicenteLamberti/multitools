@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -21,14 +22,17 @@ class BuildCategoryTest {
         //Given
         final String expectedName = "John";
         final CategoryID wrongID = CategoryID.from("1");
-        final Product product = ProductBuilder.builderDummy().rebuild();
-        //When
+        final List<Product> wrongProducts = List.of(ProductBuilder.builderDummy().rebuild());
+        final LocalDateTime wrongNow = LocalDateTime.now();
 
+        //When
         final Category actualCategory = CategoryBuilder.builder()
                 .withName(expectedName)
                 .withDeleted(true)
                 .withId(wrongID)
-                .withProducts(List.of(product))
+                .withProducts(wrongProducts)
+                .withDeletedAt(wrongNow)
+                .withUpdatedAt(wrongNow)
                 .build();
 
         //Then
@@ -65,11 +69,10 @@ class BuildCategoryTest {
     }
 
     private static Stream<Arguments> givenInvalidParams_whenCallsBuild_shouldThrowsException() {
-        // Given
         return Stream.of(
-                Arguments.of(null, true, List.of("nameShouldNotBeEmpty", "nameShouldNotBeBlank")),
-                Arguments.of("", true, List.of("nameShouldNotBeEmpty", "nameShouldNotBeBlank")),
-                Arguments.of("INVALIDIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZE", true, List.of("nameShouldNotBeMoreThan255Character"))
+                Arguments.of(null, true, List.of("Name should not be empty.", "Name should not be blank.")),
+                Arguments.of("", true, List.of("Name should not be empty.", "Name should not be blank.")),
+                Arguments.of("INVALIDIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZEINVALIDSIZE", true, List.of("Name should not be greater than 255 characters."))
 
 
         );

@@ -1,5 +1,6 @@
-package br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.delete;
+package br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category;
 
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.delete.DeleteCategoryUseCase;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.delete.models.DeleteCategoryCommand;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.CategoryBuilder;
@@ -38,10 +39,14 @@ class DeleteCategoryUseCaseTest {
 
         Mockito.when(categoryGateway.getByID(categoryID)).thenReturn(category);
 
+        Assertions.assertFalse(category.isDeleted());
+        Assertions.assertNull(category.getDeletedAt());
         //When
         Assertions.assertDoesNotThrow(() -> useCase.execute(cmd));
 
         //Then
+        Assertions.assertTrue(category.isDeleted());
+        Assertions.assertNotNull(category.getDeletedAt());
         Mockito.verify(categoryGateway, Mockito.times(1)).delete(category);
 
     }
@@ -53,7 +58,7 @@ class DeleteCategoryUseCaseTest {
         final CategoryID categoryID = CategoryID.generate();
         final DeleteCategoryCommand cmd = DeleteCategoryCommand.with(categoryID.getValue());
 
-        final String expectedExceptionMessage = "Unable to delete category";
+        final String expectedExceptionMessage = "Unable to delete category.";
 
         Mockito.when(categoryGateway.getByID(categoryID)).thenThrow(new RuntimeException("Any message"));
 
@@ -80,7 +85,7 @@ class DeleteCategoryUseCaseTest {
 
         final CategoryID categoryID = category.getId();
         final DeleteCategoryCommand cmd = DeleteCategoryCommand.with(categoryID.getValue());
-        final String expectedExceptionMessage = "Unable to delete category";
+        final String expectedExceptionMessage = "Unable to delete category.";
 
         Mockito.when(categoryGateway.getByID(categoryID)).thenReturn(category);
 
@@ -100,7 +105,7 @@ class DeleteCategoryUseCaseTest {
         final Category category = CategoryBuilder.builderDummy().rebuild();
         final CategoryID categoryID = category.getId();
         final DeleteCategoryCommand cmd = DeleteCategoryCommand.with(categoryID.getValue());
-        final String expectedExceptionMessage = "Unable to delete category";
+        final String expectedExceptionMessage = "Unable to delete category.";
 
         Mockito.when(categoryGateway.getByID(categoryID)).thenReturn(category);
         Mockito.doThrow(new RuntimeException("Any error")).when(categoryGateway).delete(category);

@@ -12,8 +12,8 @@ import java.util.List;
 public class DeleteCategoryTest {
 
     @Test
-    @DisplayName("Caso não exista produtos vinculados, não deve lançar exceção")
-    void givenNoLinkedProducts_whenProcess_thenDoNotThrowException(){
+    @DisplayName("Caso não exista produtos vinculados, não deve lançar exceção, e deve setar os atributos de deletado.")
+    void givenNoLinkedProducts_whenProcess_thenDeleteCategory(){
         //Given
         final Category category = CategoryBuilder.builderDummy().rebuild();
 
@@ -33,8 +33,8 @@ public class DeleteCategoryTest {
     @DisplayName("Caso exista produtos vinculados, deve lançar exceção")
     void givenLinkedProducts_whenProcess_thenDoThrowException(){
         //Given
-        final String expectedExceptionMessage = "errorAtDeleteCategory";
-        final List<String> expectedErrors = List.of("productsLinked");
+        final String expectedExceptionMessage = "An error occurred while deleting category.";
+        final List<String> expectedErrors = List.of("There are linked products.");
 
         final List<Product> products = List.of(ProductBuilder.builderDummy().rebuild()); // todo ver como não permitir usar o build aqui
         final Category category = CategoryBuilder.builderDummy()
