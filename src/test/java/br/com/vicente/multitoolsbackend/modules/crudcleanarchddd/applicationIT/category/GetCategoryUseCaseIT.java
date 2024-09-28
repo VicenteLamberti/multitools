@@ -1,7 +1,8 @@
 package br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.applicationIT.category;
 
-import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.update.UpdateCategoryUseCase;
-import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.update.models.UpdateCategoryCommand;
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.get.GetCategoryUseCase;
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.get.models.GetCategoryCommand;
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.application.category.get.models.GetCategoryOutput;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.applicationIT.IntegrationTest;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.CategoryBuilder;
@@ -12,45 +13,37 @@ import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.infraestructure
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 
 @IntegrationTest
-class UpdateCategoryUseCaseTest {
+class GetCategoryUseCaseIT {
 
     @SpyBean
     private CategoryGateway categoryGateway;
     @Autowired
-    private UpdateCategoryUseCase useCase;
+    private GetCategoryUseCase useCase;
     @Autowired
     private CategoryRepository categoryRepository;
 
+
     @Test
-    @DisplayName("It should fetch the category record and update it.")
-    void givenValidCategoryID_whenCallsExecute_shouldUpdate() {
+    @DisplayName("Should find register of category by id and return output")
+    void givenValidID_whenCallsExecute_shouldReturnOutput() {
 
         //Given
         final Category category = CategoryBuilder.builderDummy().rebuild();
         categoryRepository.saveAndFlush(CategoryJpa.from(category));
-        final CategoryID categoryID = category.getId();
-        final String expectedName = "Vicente";
-        final UpdateCategoryCommand cmd = UpdateCategoryCommand.with(categoryID.getValue(), expectedName);
+        final CategoryID expectedCategoryID = category.getId();
+        final GetCategoryCommand cmd = GetCategoryCommand.with(expectedCategoryID.getValue());
 
-
-        Assertions.assertNull(category.getUpdatedAt());
-        Assertions.assertNotEquals(expectedName, category.getName());
 
         //When
-        Assertions.assertDoesNotThrow(() -> useCase.execute(cmd));
+        final GetCategoryOutput actualOutput = useCase.execute(cmd);
 
         //Then
-        final CategoryJpa categoryJpa = categoryRepository.findById(categoryID.getValue()).orElseThrow();
-        Assertions.assertNotNull(categoryJpa.getUpdatedAt());
-        Assertions.assertEquals(expectedName, categoryJpa.getName());
-        Mockito.verify(categoryGateway, Mockito.times(1)).update(category);
-
+        //TODO fazer um teste para o from do output e fazer um comparator de output com dominio e garantir que todos campos estao sendo validados
+        Assertions.assertNotNull(actualOutput);
+        Assertions.assertEquals(expectedCategoryID, actualOutput.id());
     }
-
-    parei aqui falta os tes de use case e it de list e get
 }
