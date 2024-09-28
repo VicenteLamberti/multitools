@@ -47,7 +47,7 @@ class GetCategoryUseCaseTest {
     }
 
     @Test
-    @DisplayName("Should throws exception if not found category")
+    @DisplayName("Should throws exception if occur error in gateway get category")
     void givenOccurExceptionAtGetCategory_whenCallsExecute_shouldThrowsExceptionInUseCase() {
         //Given
         final CategoryID categoryID = CategoryID.generate();
