@@ -3,6 +3,7 @@ package br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.infraestructur
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.Category;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.domain.category.CategoryBuilder;
 import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.infraestructure.ComparatorCategory;
+import br.com.vicente.multitoolsbackend.modules.crudcleanarchddd.infraestructure.GatewayTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,14 +12,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 
-@DataJpaTest
-@ComponentScan(
-        basePackages = "br.com.vicente.multitoolsbackend",
-        useDefaultFilters = false,
-        includeFilters = {
-                @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*DbGateway")
-        }
-)
+@GatewayTest
 class CategoryDbGatewayRegisterTest {
 
     @Autowired
